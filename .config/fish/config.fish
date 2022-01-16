@@ -1,28 +1,25 @@
 ########################################################
-# this fish config file was inspired by the config file
-# shared by:
+#    ____ _____
+#   |  _ \_   _|
+#   | |_) || |
+#   |  __/ | |
+#   |_|    |_|
+#
 ########################################################
-#  ____ _____ 
-# |  _ \_   _|  Derek Taylor (DistroTube)
-# | | | || |    http://www.youtube.com/c/DistroTube
-# | |_| || |    http://www.gitlab.com/dwt1/ 
-# |____/ |_|
-########################################################
-# Now it has only what I need and my costumizations
+# This fish config file was inspired by the config file
+# shared by Derek Taylor (DistroTube) in his gitlab:
+#    http://www.gitlab.com/dwt1/ 
 ########################################################
 
-### EXPORT ###
+### EXPORTS ###
+# First line removes the path; second line sets it.  Without the first line,
+# your path gets massive and fish becomes very slow.
+set -e fish_user_paths
 set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
 set fish_greeting                      # Supresses fish's intro message
 set TERM "xterm-256color"              # Sets the terminal type
 set EDITOR "nvim"
 
-### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
-function fish_user_key_bindings
-  # fish_default_key_bindings
-  fish_vi_key_bindings
-end
-### END OF VI MODE ###
 
 ### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
 set fish_color_normal brcyan
@@ -32,6 +29,12 @@ set fish_color_error '#ff6c6b'
 set fish_color_param brcyan
 
 ### FUNCTIONS ###
+# Set default 'vi' mode
+function fish_user_key_bindings
+  # fish_default_key_bindings
+  fish_vi_key_bindings
+end
+### END OF VI MODE ###
 # Functions needed for !! and !$
 function __history_previous_command
   switch (commandline -t)
