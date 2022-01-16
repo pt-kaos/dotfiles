@@ -83,35 +83,42 @@ alias dc="docker-compose"
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-### OS ALIASES ###
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
+
+# human-readable sizes
+alias df='df -h'
+alias free='free -m'
+
+# broot
+alias br='broot -dhp'
+alias bs='broot --sizes'
+
 # confirm before overwriting
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp="cp -i"
+
 # termbin
 alias tb="nc termbin.com 9999"
+
 # pacman and yay
 alias pacsyu='sudo pacman -Syyu'                 # update only standard pkgs
 alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs
 alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs
 alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
+
 # Changing "ls" to "exa"
 alias ll='exa -al --color=always --group-directories-first' # my preferred listing
 alias la='exa -a --color=always --group-directories-first'  # all files and dirs
 alias ls='exa -l --color=always --group-directories-first'  # long format
 alias lt='exa -aT --color=always --group-directories-first' # tree listing
+
 # navigation
 alias ..='cd ..' 
 alias ...='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
-# broot
-#alias br='broot -dhp'
-#alias bs='broot --sizes'
 
 ### START NEOFECH ###
 neofetch
