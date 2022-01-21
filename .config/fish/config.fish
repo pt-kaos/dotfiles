@@ -70,6 +70,13 @@ function backup --argument filename
     cp $filename $filename.bak
 end
 
+# Function for pdf malware analisys
+# ex: mwpdfscan file.pdf
+# result: copies file as file.txt.bak
+function mwpdfscan --argument filename
+    docker run -v (pwd):/data cincan/jsunpack-n /data/$filename -V -d /data/output
+end
+
 
 ### ALIASES ###
 alias nv='nvim'
