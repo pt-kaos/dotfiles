@@ -10,7 +10,7 @@ set tabstop=4
 "set signcolumn=yes:2
 set relativenumber
 set number
-"set termguicolors
+set termguicolors
 "set undofile
 "set spell
 set title
@@ -170,6 +170,7 @@ source ~/.config/nvim/plugins/floaterm.vim
 source ~/.config/nvim/plugins/fugitive.vim
 "source ~/.config/nvim/plugins/fzf.vim
 "source ~/.config/nvim/plugins/heritage.vim
+source ~/.config/nvim/plugins/hexokinase.vim
 "source ~/.config/nvim/plugins/lastplace.vim
 "source ~/.config/nvim/plugins/lion.vim
 source ~/.config/nvim/plugins/lspconfig.vim
