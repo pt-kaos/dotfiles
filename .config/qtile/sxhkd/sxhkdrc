@@ -28,7 +28,7 @@ super + F5
 
 # Atom
 super + F6
-	atom
+	alacritty -e ranger
 
 ##Vlc
 #super + F6
@@ -44,7 +44,7 @@ super + F8
 
 #Gimp
 super + F9
-    gimp
+    alacritty -e htop
 
 #Spotify
 super + F10
@@ -145,128 +145,127 @@ super + shift + s
 # CONTROL + ALT KEYS
 #################################################################
 
-#arcolinux-welcome-app
-ctrl + alt + w
-     arcolinux-welcome-app
+#Xfce4-appfinder
+ctrl + alt + a
+    xfce4-appfinder
+
+#File-Manager
+ctrl + alt + b
+    thunar
+
+#Available key
+#ctrl + alt + c
+#    Available key
 
 #arcolinux-tweak-tool
 ctrl + alt + e
     arcolinux-tweak-tool
 
-#conky-rotate
-ctrl + alt + Next
-     conky-rotate -n
-
-#conky-rotate
-ctrl + alt + Prior
-    conky-rotate -p
-
-#File-Manager
-ctrl + alt + b
-     thunar
-
-#Catfish
-ctrl + alt + c
-     catfish
-
-#Chromium
-ctrl + alt + g
-    chromium -no-default-browser-check
-
 #Firefox
 ctrl + alt + f
-     firefox
+    firefox
+
+#Available key
+#ctrl + alt + g
+#    Available key
+
+#Available key
+#ctrl + alt + h
+#    Available key
 
 #Nitrogen
 ctrl + alt + i
-     nitrogen
+    nitrogen
+
+#Available key
+#ctrl + alt + j
+#    Available key
 
 #arcolinux-logout
 ctrl + alt + k
-     arcolinux-logout
+    arcolinux-logout
 
 #arcolinux-logout
 ctrl + alt + l
     arcolinux-logout
 
+#Xfce4-settings-manager
+ctrl + alt + m
+    xfce4-settings-manager
+
+#Available key
+#ctrl + alt + n
+#    Available key
+
+#Available key
+#ctrl + alt + o
+#    Available key
+
 #Pamac-manager
 ctrl + alt + p
     pamac-manager
 
-#Xfce4-settings-manager
-ctrl + alt + m
-     xfce4-settings-manager
-
-#Pulse Audio Control
-ctrl + alt + u
-     pavucontrol
+#Available key
+#ctrl + alt + q
+#    Available key
 
 #Rofi theme selector
 ctrl + alt + r
-  rofi-theme-selector
+    rofi-theme-selector
 
 #Spotify
 ctrl + alt + s
-   spotify
-
-#alacritty
-ctrl + alt + Return
-    alacritty
+    spotify
 
 #alacritty
 ctrl + alt + t
     alacritty
 
-##Vivaldi
+#Pulse Audio Control
+ctrl + alt + u
+    pavucontrol
+
+#Available
 #ctrl + alt + v
-#    vivaldi-stable
+#    Available
 
-#Xfce4-appfinder
-ctrl + alt + a
-    xfce4-appfinder
+#arcolinux-welcome-app
+ctrl + alt + w
+    arcolinux-welcome-app
 
+#Available key
+#ctrl + alt + x
+#    Available key
+
+#Available key
+#ctrl + alt + y
+#    Available key
+
+#Available key
+#ctrl + alt + z
+#    Available key
+
+#conky-rotate
+ctrl + alt + Next
+    conky-rotate -n
+
+#conky-rotate
+ctrl + alt + Prior
+    conky-rotate -p
+
+#alacritty
+ctrl + alt + Return
+    alacritty
 
 #Keyboard dependent
-#urxvt
+#Available
 #ctrl + alt + KP_Enter
-#     urxvt
+#     Available
 
 
 #################################################################
 # ALT + ... KEYS
 #################################################################
-
-#Wallpaper trash
-alt + t
-    variety -t
-
-#Wallpaper next
-alt + n
-    variety -n
-
-#Wallpaper previous
-alt + p
-    variety -p
-
-#Wallpaper favorite
-alt + f
-    variety -f
-
-#Wallpaper previous
-alt + Left
-    variety -p
-
-#Wallpaper next
-alt + Right
-    variety -n
-
-#Wallpaper toggle-pause
-alt + Up
-    variety --toggle-pause
-
-#Wallpaper resume
-alt + Down
-    variety --resume
 
 #Rofi Application Finder
 alt + F1
@@ -277,34 +276,13 @@ alt + F2
     xfce4-appfinder
     #xfce4-appfinder --collapsed
 
-#Xfce4-appfinder
-#alt + F3
-#    xfce4-appfinder
-
-
 #################################################################
-#VARIETY KEYS WITH PYWAL
+# ALT + Shift + ... KEYS
 #################################################################
-
-#Wallpaper trash
-alt + shift + t
-    variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#Wallpaper next
-alt + shift + n
-    variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#Wallpaper previous
-alt + shift + p
-    variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#Wallpaper favorite
-alt + shift + f
-    variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 
 #Wallpaper update
-alt + shift + u
-    wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+#alt + shift + u
+#    wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 
 #################################################################
 # CONTROL + SHIFT KEYS
@@ -410,7 +388,7 @@ XF86MonBrightnessDown
 # CTRL + ALT KEYS
 #################################################################
 
-#Picom Toggle
+#Picom restart
 ctrl + alt + o
     ~/.config/qtile/scripts/picom-toggle.sh
 
