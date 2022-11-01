@@ -15,7 +15,7 @@
 # First line removes the path; second line sets it.  Without the first line,
 # your path gets massive and fish becomes very slow.
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
+set -U fish_user_paths $HOME/.local/bin $HOME/.local/bin/statusbar $HOME/Applications $fish_user_paths
 set fish_greeting                      # Supresses fish's intro message
 set TERM "xterm-256color"              # Sets the terminal type
 set EDITOR "nvim"
@@ -79,56 +79,57 @@ end
 
 
 ### ALIASES ###
-alias nv='nvim'
+alias nv='nvim'     #Start nvim
 
-# Command to manage bare git reposiory for my dotfiles
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME" #Git command to manage bare git reposiory for my dotfiles
 
 # Alias for docker commands
-alias dcr="docker-compose run --rm"
-alias dcf="docker-compose logs -f"
-alias dc="docker-compose"
+alias dcr="docker compose run --rm"     #Docker command com run an immage using a composer yaml file
+alias dcf="docker compose logs -f"      #Docker command to look at the running immage logs using a composer yaml file
+alias dc="docker compose"               #Docker compose command
 
 # Colorize grep output (good for log files)
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'          #Colorize grep output
+alias egrep='egrep --color=auto'        #Colorize egrep output
+alias fgrep='fgrep --color=auto'        #Colorize fgrep output
 
 # human-readable sizes
-alias df='df -h'
-alias free='free -m'
+alias df='df -h'            #df command with human readable sizes
+alias free='free -m'        #free command with human readable sizes
+alias dum='du -BM -d1'      #disk usage command in MB only for the Level 1 directory
 
 # broot
-alias br='broot -dhp'
-alias bs='broot --sizes'
+alias br='broot -dhp'       #broot command to browse through the directory structure
+alias bs='broot --sizes'    #broot command to show directory sizes
 
 # confirm before overwriting
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp="cp -i"
+alias rm='rm -i'            #rm command change the default behaviour to confirm before executing
+alias mv='mv -i'            #mv command change the default behaviour to confirm before executing
+alias cp="cp -i"            #cp command change the default behaviour to confirm before executing
 
 # termbin
-alias tb="nc termbin.com 9999"
+alias tb="nc termbin.com 9999"      #termbin to paste comandline output
 
 # pacman and yay
-alias pacsyu='sudo pacman -Syyu'                 # update only standard pkgs
-alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs
-alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs
-alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
-alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
+alias pacsyu='sudo pacman -Syyu'                 #update only standard pkgs
+alias yaysua='yay -Sua --noconfirm'              #update only AUR pkgs
+alias yaysyu='yay -Syu --noconfirm'              #update standard pkgs and AUR pkgs
+alias unlock='sudo rm /var/lib/pacman/db.lck'    #remove pacman lock
+alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  #remove orphaned packages
 
 # Changing "ls" to "exa"
-alias ll='exa -al --color=always --group-directories-first' # my preferred listing
-alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-alias ls='exa -l --color=always --group-directories-first'  # long format
-alias lt='exa -aT --color=always --group-directories-first' # tree listing
+alias ll='exa -al --color=always --group-directories-first' #list dir command -> my preferred listing
+alias la='exa -a --color=always --group-directories-first'  #list all files and dirs
+alias ls='exa -l --color=always --group-directories-first'  #list dir long format
+alias lt='exa -aT --color=always --group-directories-first' #tree listing
 
 # navigation
-alias ..='cd ..' 
-alias ...='cd ../..'
-alias .3='cd ../../..'
-alias .4='cd ../../../..'
-alias .5='cd ../../../../..'
+alias ..='cd ..'                 #back one dir
+alias ...='cd ../..'             #back two dirs
+alias .3='cd ../../..'           #back three dirs
+alias .4='cd ../../../..'        #back four dirs
+alias .5='cd ../../../../..'     #back five dirs
 
 ### START NEOFECH ###
 neofetch
