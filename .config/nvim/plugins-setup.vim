@@ -18,6 +18,9 @@ Plug 'stevearc/vim-arduino'         "{'for': 'clang'}
 Plug 'tpope/vim-commentary'
 Plug 'suy/vim-context-commentstring'    "Complements the commentary plugin with some automation like auto comments after newline
 
+" surround anything with characters we chose
+Plug 'tpope/vim-surround'
+
 " Completion Plugins
 Plug 'hrsh7th/nvim-cmp'                 "A completion Engine for NeoVim
 Plug 'hrsh7th/cmp-nvim-lsp'             "The completion Pluggin - Allow LSP completions -> A Must Have!
