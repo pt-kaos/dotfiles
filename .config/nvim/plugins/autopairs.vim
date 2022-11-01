@@ -1,4 +1,4 @@
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 
 let g:AutoPairsMapCR = 0
 

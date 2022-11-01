@@ -1,5 +1,5 @@
-Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
 
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe

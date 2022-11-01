@@ -1,4 +1,4 @@
-Plug 'RRethy/vim-hexokinase'
+"Plug 'RRethy/vim-hexokinase'
 
 let g:Hexokinase_highlighters = [ 'backgroundfull' ] 
 
