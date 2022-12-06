@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+grep -i '^alias' ~/.config/fish/config.fish | sed -e 's/alias//g' -e 's/=/#/g' | awk -F# '{l=length($1); printf "%-15s%s\n",$1, $NF}' | dmenu -l 30

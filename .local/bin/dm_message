@@ -1,0 +1,25 @@
+#!/usr/bin/bash
+
+usage() { echo "Usage: dm_message -a/-o \"Message\"" | /usr/bin/dmenu -sb "#FF1111" -sf "#FFFF00" -nb "#FF1111" -nf "#FF1111"; exit 0; }
+
+[ $# -eq 0 ] && usage
+
+while getopts "a:n:h" arg; do
+    case $arg in
+        n) #Normal Message
+            echo ${OPTARG} | /usr/bin/dmenu -sb "#027A31" -sf "#CBCBCB" -nb "#027A31" -nf "#027A31"
+            exit 0
+            ;;
+        a) #Alert Message
+            echo ${OPTARG} | /usr/bin/dmenu -sb "#7F0302" -sf "#CCCC11" -nb "#7F0302" -nf "#7F0302"
+            exit 0
+            ;;
+        h | *) #Display usage
+            usage
+            exit 0
+            ;;
+    esac
+done
+
+
+
