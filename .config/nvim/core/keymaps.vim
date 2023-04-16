@@ -122,9 +122,19 @@ vnoremap <leader>P "+P
 " Remove trailing White Spaces
 nnoremap <leader>sws :%s/\s\+$//<CR>
 
-" LSP Formating:
+"LSP Formating:
 nnoremap <leaded>lf :lua vim.lsp.buf.format()
 
+" Chat GPT Plugin
+nnoremap <leader>tk :ChatGPT
+vnoremap <leader>tk :ChatGPT
+nnoremap <leader>tj :ChatGPTActAs
+vnoremap <leader>tj :ChatGPTActAs
+nnoremap <leader>tt :ChatGPTEditWithInstructions
+vnoremap <leader>tt :ChatGPTEditWithInstructions
+
+"
+"
 " PYTHON SPECIFIC
 augroup filetype_python
         " Comenta Paragrafo ou bloco de codigo com #

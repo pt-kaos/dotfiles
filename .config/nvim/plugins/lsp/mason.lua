@@ -8,7 +8,7 @@ mason.setup()
 
 mason_lspconfig.setup({
     ensure_installed = {
-        "sumneko_lua",
+        "lua_ls",
         "golangci_lint_ls",
         "clangd",
         "bashls",

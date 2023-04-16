@@ -35,24 +35,35 @@ set clipboard=unnamedplus
 set backspace=indent,eol,start
 set completeopt=menu,menuone,noselect
 
+let g:python3_host_prog='/usr/bin/python3'
+
 "--------------------------------------------------------------------------
 " Miscellaneous
 "--------------------------------------------------------------------------
 
 highlight Comment term=bold cterm=italic ctermfg=white gui=italic guifg=white
 
-augroup VimReload
-autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC "Reload Vim Config
-augroup END
+"autocmd!
+
+if !exists("autocommands_loaded")
+    let autocommands_loaded = 1
+
+    augroup VimReload
+        autocmd BufWritePost $MYVIMRC source $MYVIMRC "Reload Vim Config
+    augroup END
 
 
-" To have Vim jump to the last position when reopening a file
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    " To have Vim jump to the last position when reopening a file
+    if has("autocmd")
+        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    endif
+
+    autocmd TermOpen * startinsert
+
+"    autocmd FileType python let g:python3_host_prog='/usr/bin/python3'
+    
+
 endif
-
-autocmd TermOpen * startinsert
 
 "augroup FileTypeOverrides
 "    autocmd!

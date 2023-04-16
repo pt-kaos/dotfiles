@@ -31,7 +31,7 @@ Plug 'hrsh7th/cmp-buffer'               "Buffer completins
 Plug 'hrsh7th/cmp-path'                 "Path completions
 Plug 'hrsh7th/cmp-cmdline'              "Command line completions
 Plug 'saadparwaiz1/cmp_luasnip'         "Snippet completions
-Plug 'glepnir/lspsaga.nvim'             "Enhance UI for LSP experience
+Plug 'glepnir/lspsaga.nvim', { 'on' : 'LspAttach' }             "Enhance UI for LSP experience
 Plug 'onsails/lspkind.nvim'             "Add vscode icons to lsp autocompletion window
 
 " Snippets Plugins
@@ -75,8 +75,18 @@ Plug 'dstein64/vim-startuptime'                         "Identify plugin startup
 
 " Color & Theme Plugin
 Plug 'dracula/vim', { 'as': 'dracula' } "dracula theme
-Plug 'RRethy/vim-hexokinase'            "colorize color descriptions or color codes
+Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }            "colorize color descriptions or color codes
 
+"Manage Virtual Environments for python
+Plug 'sansyrox/vim-python-virtualenv'
+
+"A ChatGPT plugin for nvim
+Plug 'jackMort/ChatGPT.nvim'
+
+"Dependencies for ChatGPT Plugin
+Plug 'MunifTanjim/nui.nvim'
+    "Already installed 'nvim-lua/plenary.nvim'
+    "Already installed 'nvim-telescope/telescope.nvim'
 
 
 "source ~/.config/nvim/plugins/abolish.vim

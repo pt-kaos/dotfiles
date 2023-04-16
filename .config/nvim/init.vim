@@ -23,6 +23,7 @@ source ~/.config/nvim/core/keymaps.vim
 source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/arduino.vim
 source ~/.config/nvim/plugins/autopairs.vim
+source ~/.config/nvim/plugins/chatgpt.lua
 source ~/.config/nvim/plugins/floaterm.vim
 source ~/.config/nvim/plugins/hexokinase.vim
 source ~/.config/nvim/plugins/nerdtree.vim
@@ -32,6 +33,6 @@ source ~/.config/nvim/plugins/telescope.vim
 luafile ~/.config/nvim/plugins/dracula.lua
 luafile ~/.config/nvim/plugins/nvim-cmp.lua
 luafile ~/.config/nvim/plugins/lsp/mason.lua
-luafile ~/.config/nvim/plugins/lsp/lspsaga.lua
 luafile ~/.config/nvim/plugins/lsp/lspconfig.lua
+luafile ~/.config/nvim/plugins/lsp/lspsaga.lua
 
