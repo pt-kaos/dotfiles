@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/bash
 
 set -e
 
@@ -10,29 +10,64 @@ sleep 1
 
 # BUG: device on /sys/class/drm does not update without forcing an update with xrandr
 logger -t autorandr "Reading monitor configuration..."
-xrandr > /dev/null
+#xrandr > /dev/null
+
+TYPE="single"
+
+configure_monitors() {
+
+  # Filter connected monitors
+  connected_monitors=()
+  while IFS= read -r line; do
+      monitor_name=$(echo "$line" | grep -i " connected" | awk '{print $1}')
+
+      if [[ $monitor_name ]]; then
+          connected_monitors+=("$monitor_name")
+      fi
+  #done <<< "$(cat ~/xr.out)"
+  done <<< "$(xrandr)"
+
+#    while IFS=' ' read -r monitor status; do
+#      if [[ $status == "connected" ]]; then
+#        connected_monitors+=("$monitor")
+#      fi
+#    done <<< "$(cat ~/xr.out | awk '{print $1 " " $2}')"
+
+  echo "Connected monitors: "${connected_monitors[@]}
+
+  COMMAND="/usr/bin/xrandr --output eDP1 --primary --auto --rotate normal"
+
+  # Configure connected monitors
+  for monitor in "${connected_monitors[@]}"; do
+    case $monitor in
+        DP1 | DP2) # Normal positioned monitor
+            TYPE="double"
+	        EXTERNAL_MONITOR_STATUS="connected"
+            COMMAND=$COMMAND" --output "$monitor" --auto --rotate normal --right-of eDP1"
+            echo "External monitor $monitor is: connected"
+            ;;
+        HDMI1 | HDMI2) # Small Monitor in table 1
+            TYPE="double"
+            COMMAND=$COMMAND" --output "$monitor" --auto --rotate normal --left-of eDP1"
+            echo "External monitor $monitor is: connected"
+            ;;
+        eDP1 | *) #Display usage
+            ;;
+    esac
+  done
+  $COMMAND
+}
 
 # change this to your external monitor device
-EXTERNAL_MONITOR=HDMI1
-if [ -f '/sys/class/drm/card0-HDMI-A-1/status' ]; then
-	EXTERNAL_MONITOR_STATUS=$( cat /sys/class/drm/card0-HDMI-A-1/status )
-else
-	EXTERNAL_MONITOR_STATUS=$( cat /sys/class/drm/card1-HDMI-A-1/status )
-fi
 
-echo "External monitor is: $EXTERNAL_MONITOR_STATUS"
+configure_monitors
 
-# Is the external monitor connected?
-if [ "$EXTERNAL_MONITOR_STATUS" = "connected" ]; then
-    TYPE="double"
-    #/usr/bin/xrandr --output $EXTERNAL_MONITOR --mode 1280x1024 --pos 0x0 --rotate normal --output eDP1 --primary --mode 1366x768 --pos 1280x0 --rotate normal
-    /usr/bin/xrandr --output eDP1 --primary --auto --rotate normal --output $EXTERNAL_MONITOR --auto --rotate normal --left-of eDP1
-else
-    TYPE="single"
-    /usr/bin/xrandr --output $EXTERNAL_MONITOR --off --output eDP1 --mode auto --pos 0x0 --rotate normal
-fi
+nitrogen --restore
 
 logger -t autorandr "Switched to $TYPE monitor mode"
 
 exit 0
+
+    #/usr/bin/xrandr --output $EXTERNAL_MONITOR --mode 1280x1024 --pos 0x0 --rotate normal --output eDP1 --primary --mode 1366x768 --pos 1280x0 --rotate normal
+	# feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg
 
