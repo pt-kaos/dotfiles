@@ -19,7 +19,7 @@ set -U fish_user_paths $HOME/.local/bin $HOME/.local/bin/statusbar $HOME/Applica
 set fish_greeting                      # Supresses fish's intro message
 set TERM "xterm-256color"              # Sets the terminal type
 set EDITOR "nvim"
-set -x OPENAI_API_KEY (cat ~/.config/nvim/chatgpt.conf)
+#set -x OPENAI_API_KEY (cat ~/.config/nvim/chatgpt.conf)
 
 ### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
 set fish_color_normal brcyan
