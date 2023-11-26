@@ -387,6 +387,8 @@ globalkeys = my_table.join(
     -- super + shift + ...
     --awful.key({ modkey, "Shift" }, "n", EM USO
     --awful.key({ modkey, "Shift" }, "q", EM USO
+    awful.key({ modkey, "Shift" }, "s", function() awful.util.spawn("screenshot.sh") end,
+        {description = "Screenshot of a selection", group = "screenshots"}),
     --awful.key({ modkey, "Shift" }, "y", EM USO
     awful.key({ modkey, "Shift" }, "Return", function() awful.util.spawn( filemanager ) end,
         {description = "Filemanager", group = "Tools"}),
@@ -486,8 +488,10 @@ globalkeys = my_table.join(
         {description = "Scrot", group = "screenshots"}),
     awful.key({ modkey1 }, "Print", function () awful.util.spawn( "xfce4-screenshooter" ) end,
         {description = "Xfce screenshot", group = "screenshots"}),
-    awful.key({ modkey1, "Shift"  }, "Print", function() awful.util.spawn("gnome-screenshot -i") end,
-        {description = "Gnome screenshot", group = "screenshots"}),
+    awful.key({ modkey1, "Shift"  }, "Print", function() awful.util.spawn("screenshot.sh") end,
+        {description = "Screenshot of a selection", group = "screenshots"}),
+    --awful.key({ modkey1, "Shift"  }, "Print", function() awful.util.spawn("gnome-screenshot -i") end,
+    --    {description = "Gnome screenshot", group = "screenshots"}),
 
     -- Personal keybindings}}}
 

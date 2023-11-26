@@ -137,6 +137,6 @@ neofetch
 ### CONDA INITIATIZATION ###
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-#eval /home/pedro/Applications/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+alias conda_init='eval /home/pedro/anaconda3/bin/conda "shell.fish" "hook" $argv | source'
 # <<< conda initialize <<<
 
