@@ -24,34 +24,48 @@ configure_monitors() {
       if [[ $monitor_name ]]; then
           connected_monitors+=("$monitor_name")
       fi
-  #done <<< "$(cat ~/xr.out)"
   done <<< "$(xrandr)"
-
-#    while IFS=' ' read -r monitor status; do
-#      if [[ $status == "connected" ]]; then
-#        connected_monitors+=("$monitor")
-#      fi
-#    done <<< "$(cat ~/xr.out | awk '{print $1 " " $2}')"
 
   echo "Connected monitors: "${connected_monitors[@]}
 
-  COMMAND="/usr/bin/xrandr --output eDP1 --primary --auto --rotate normal"
+  #COMMAND="/usr/bin/xrandr --output eDP1 --primary --auto --rotate normal"
+  COMMAND="/usr/bin/xrandr"
 
   # Configure connected monitors
   for monitor in "${connected_monitors[@]}"; do
     case $monitor in
-        DP1 | DP2) # Normal positioned monitor
+        eDP1 | eDP-1 | eDP-1-1) # Normal positioned monitor
+            TYPE="double"
+	        # EXTERNAL_MONITOR_STATUS="connected"
+            COMMAND=$COMMAND" --output "$monitor" --primary --auto --rotate normal"
+            echo "External monitor $monitor is: connected"
+            PRIMARY=$monitor
+            ;;
+        DP1 | DP-1 | DP-1-0 | DP-1-1) # Normal positioned monitor
             TYPE="double"
 	        EXTERNAL_MONITOR_STATUS="connected"
-            COMMAND=$COMMAND" --output "$monitor" --auto --rotate normal --right-of eDP1"
+            COMMAND=$COMMAND" --output "$monitor" --auto --rotate normal --right-of $PRIMARY"
             echo "External monitor $monitor is: connected"
             ;;
-        HDMI1 | HDMI2) # Small Monitor in table 1
+        DP2 | DP-2 | DP-2-0 | DP-2-1) # Normal positioned monitor
             TYPE="double"
-            COMMAND=$COMMAND" --output "$monitor" --auto --rotate normal --left-of eDP1"
+	        EXTERNAL_MONITOR_STATUS="connected"
+            COMMAND=$COMMAND" --output "$monitor" --auto --rotate normal --right-of $PRIMARY"
             echo "External monitor $monitor is: connected"
             ;;
-        eDP1 | *) #Display usage
+        HDMI1 | HDMI-1 | HDMI-1-0 | HDMI-1-1) # Small Monitor in table 1
+            TYPE="double"
+	        EXTERNAL_MONITOR_STATUS="connected"
+            COMMAND=$COMMAND" --output "$monitor" --auto --rotate normal --left-of $PRIMARY"
+            echo "External monitor $monitor is: connected"
+            ;;
+        HDMI2 | HDMI-2 | HDMI-2-0 | HDMI-2-1) # Small Monitor in table 1
+            TYPE="double"
+	        EXTERNAL_MONITOR_STATUS="connected"
+            COMMAND=$COMMAND" --output "$monitor" --auto --rotate normal --left-of $PRIMARY"
+            echo "External monitor $monitor is: connected"
+            ;;
+        *) #Display usage
             ;;
     esac
   done
@@ -70,4 +84,3 @@ exit 0
 
     #/usr/bin/xrandr --output $EXTERNAL_MONITOR --mode 1280x1024 --pos 0x0 --rotate normal --output eDP1 --primary --mode 1366x768 --pos 1280x0 --rotate normal
 	# feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg
-
