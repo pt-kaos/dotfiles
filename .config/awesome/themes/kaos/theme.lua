@@ -6,44 +6,116 @@
 
 local gears = require("gears")
 local lain  = require("lain")
+local markup = lain.util.markup
 local awful = require("awful")
-local wibox = require("wibox")
-local dpi   = require("beautiful.xresources").apply_dpi
+--local wibox = require("wibox")
+--local dpi   = require("beautiful.xresources").apply_dpi
 
 local os = os
-local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
+--local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
+
 
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/kaos"
+-- Wallpapers
 --theme.wallpaper                                 = theme.confdir .. "/wallpaper.jpg"
 --theme.wallpaper                                 = "/usr/share/backgrounds/arcolinux/arco-wallpaper.jpg"
 --theme.wallpaper                                 = "/usr/share/archlinux-tweak-tool/data/wallpaper/wallpaper.png"
-theme.font                                      = "Terminus 11"
-theme.taglist_font                              = "Terminus 12"
-theme.menu_bg_normal                            = "#1A1A1A"
-theme.menu_bg_focus                             = "#313131"
-theme.bg_normal                                 = "#1A1A1A"
-theme.bg_focus                                  = "#313131"
-theme.bg_urgent                                 = "#1A1A1A"
-theme.fg_normal                                 = "#aaaaaa"
---theme.fg_focus                                  = "#ff8c00"
-theme.fg_focus                                  = "#5E81AC"
-theme.fg_urgent                                 = "#af1d18"
---theme.fg_minimize                               = "#ffffff"
-theme.fg_minimize                               = "#667070"
+
+-- Colors
+theme.redbrick                                  = "#ae3e3e"
+theme.red                                       = "#af1d18"
+theme.lightred                                  = "#ff3438"
+theme.orange                                    = "#ff8c00"
+theme.lightorange                               = "#f1af5f"
+theme.yellow                                    = "#e0da37"
+theme.darkcyan                                  = "#3ca4d8"
+theme.lightblue                                 = "#5E81AC"
+theme.blue                                      = "#7788AF"
+theme.grayblue                                  = "#535F7A"
+theme.lightgray                                 = "#aaaaaa"
+theme.darkgray                                  = "#667070"
+theme.lightgreen                                = "#80c090"
+theme.green                                     = "#40a060"
+theme.darkgreen                                 = "#759575"
+theme.vdark_gray                                = "#313131"
+theme.black                                     = "#1A1A1A"
+theme.light_black                               = "#1c2022"
+theme.white                                     = "#F0F0F0"
+
+-- Fonts
+-- theme.font                                      = "Terminus 11"
+-- theme.taglist_font                              = "Terminus 12"
+theme.font                                      = "Hack 11"
+theme.taglist_font                              = "Hack 11"
+--theme.iconFont                                  = "Font Awesome 5 Free Regular 9"
+theme.icon_font_name = "Material Symbols Rounded "
+theme.icon_font = theme.icon_font_name .. "16 @FILL=1"
+
+-- Standard Background and Foreground
+theme.bg_normal                                 = theme.black
+theme.fg_normal                                 = theme.lightgray
+theme.bg_focus                                  = theme.vdark_gray
+theme.fg_focus                                  = theme.lightblue
+theme.bg_urgent                                 = theme.black
+theme.fg_urgent                                 = theme.red
+theme.fg_minimize                               = theme.darkgray
+--theme.fg_minimize                               = theme.white
+theme.fg_widget                                 = theme.lightblue
+theme.bg_widget                                 = theme.darkgray
+
+-- Borders
 theme.border_width                              = dpi(2)
-theme.border_normal                             = "#1c2022"
---theme.border_focus                              = "#5e81ac"
-theme.border_focus                              = "#ff3438"
-theme.border_marked                             = "#3ca4d8"
+theme.border_normal                             = theme.light_black
+theme.border_focus                              = theme.lightred
+theme.border_marked                             = theme.darkcyan
+
+-- Menu
+theme.menu_bg_normal                            = theme.black
+theme.menu_fg_normal                            = theme.lightgray
+theme.menu_bg_focus                             = theme.vdark_gray
+theme.menu_fg_focus                             = theme.orange
 theme.menu_border_width                         = 0
 theme.menu_height                               = dpi(25)
 theme.menu_width                                = dpi(260)
 theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
-theme.menu_fg_normal                            = "#aaaaaa"
-theme.menu_fg_focus                             = "#ff8c00"
-theme.menu_bg_normal                            = "#050505dd"
-theme.menu_bg_focus                             = "#161616dd"
+-- theme.menu_bg_normal                            = "#050505dd"
+-- theme.menu_bg_focus                             = "#161616dd"
+
+-- Widget Colors
+theme.widget_bat_full                           = theme.green
+theme.widget_bat_empty                          = theme.red
+
+-- Widget Icons
+--theme.widget_calendar                           = ""
+theme.widget_cal_text                           = "🗓"
+theme.widget_clock_text                         = '🕒'
+theme.widget_cpu_text                           = ""
+theme.widget_mem_text                           = ''
+theme.widget_volmax_text                        = '🔊'
+theme.widget_volmed_text                        = '🔉'
+theme.widget_volmin_text                        = '🔈'
+theme.widget_volmute_text                       = '🔇'
+theme.widget_temp_text                          = '🌡'
+theme.widget_email_text                         = '✉'  -- '📨'
+theme.widget_upl_text                           = '▲'
+theme.widget_downl_text                         = '▼'
+theme.widget_power1_text                        = '🔌'
+theme.widget_power2_text                        = ''
+theme.widget_batmax_text                        = ''
+theme.widget_bathigh_text                       = ''
+theme.widget_batlow_text                        = ''
+theme.widget_batcrit_text                       = ''
+theme.widget_battery1_text                      = '🔋'
+theme.widget_battery2_text                      = '🪫'
+theme.widget_battery3_text                      = ''
+theme.widget_battery4_text                      = ''
+theme.widget_battery5_text                      = ''
+theme.widget_battery6_text                      = ''
+theme.widget_battery7_text                      = ''
+theme.widget_battery8_text                      = ''
+
+theme.widget_brightness_text                    = ''
 theme.widget_temp                               = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime                             = theme.confdir .. "/icons/ac.png"
 theme.widget_cpu                                = theme.confdir .. "/icons/cpu.png"
@@ -58,13 +130,27 @@ theme.widget_mail                               = theme.confdir .. "/icons/mail.
 theme.widget_batt                               = theme.confdir .. "/icons/bat.png"
 theme.widget_clock                              = theme.confdir .. "/icons/clock.png"
 theme.widget_vol                                = theme.confdir .. "/icons/spkr.png"
+
+-- Taglist
 --theme.taglist_squares_sel                       = theme.confdir .. "/icons/square_a.png"
 --theme.taglist_squares_unsel                     = theme.confdir .. "/icons/square_b.png"
 theme.taglist_squares_sel                       = theme.confdir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.confdir .. "/icons/square_unsel.png"
+theme.taglist_bg_focus                          = theme.bg_normal .. "20"
+theme.taglist_fg_focus                          = theme.orange .. "95"
+theme.taglist_bg_empty                          = theme.bg_normal .. "20"
+theme.taglist_fg_empty                          = theme.lightgray .. "90"
+theme.taglist_fg_occupied                       = theme.blue
+theme.taglist_bg_occupied                       = theme.bg_normal .. "20"
+theme.taglist_bg_urgent                         = theme.bg_urgent
+theme.taglist_fg_urgent                         = theme.fg_urgent
+theme.taglist_spacing                           = dpi(0)
+
+-- Tasklist
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
-theme.useless_gap                               = 5
+
+-- Layouts
 theme.layout_tile                               = theme.confdir .. "/icons/tile.png"
 theme.layout_tilegaps                           = theme.confdir .. "/icons/tilegaps.png"
 theme.layout_tileleft                           = theme.confdir .. "/icons/tileleft.png"
@@ -78,6 +164,13 @@ theme.layout_max                                = theme.confdir .. "/icons/max.p
 theme.layout_fullscreen                         = theme.confdir .. "/icons/fullscreen.png"
 theme.layout_magnifier                          = theme.confdir .. "/icons/magnifier.png"
 theme.layout_floating                           = theme.confdir .. "/icons/floating.png"
+
+-- Other settings
+theme.useless_gap                               = 5
+theme.screen_margin                             = dpi(5)   -- Novo
+theme.maximized_hide_border                     = false     -- Novo
+
+--Titlebar
 theme.titlebar_close_button_normal              = theme.confdir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.confdir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_minimize_button_normal           = theme.confdir .. "/icons/titlebar/minimize_normal.png"
@@ -99,268 +192,7 @@ theme.titlebar_maximized_button_focus_inactive  = theme.confdir .. "/icons/title
 theme.titlebar_maximized_button_normal_active   = theme.confdir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
 
-local markup = lain.util.markup
-
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
-local clockicon = wibox.widget.imagebox(theme.widget_clock)
---local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#535f7a", ">") .. markup("#de5e1e", " %H:%M "))
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%a %d %b ") .. markup("#535f7a", "[") .. markup("#ae3e3e", " %H:%M ") .. markup("#535f7a", "] "))
-mytextclock.font = theme.font
-
--- Calendar
--- local calendaricon = ""
-theme.cal = lain.widget.cal({
-    attach_to = { mytextclock },
-    notification_preset = {
-        font = "Terminus 10",
-        --fg   = theme.fg_normal,
-        --bg   = theme.bg_normal
-        fg   = theme.fg_focus,
-        bg   = theme.bg_focus
-    }
-})
-
--- Weather
---[[ to be set before use
-local weathericon = wibox.widget.imagebox(theme.widget_weather)
-theme.weather = lain.widget.weather({
-    city_id = 2803138, -- placeholder (Belgium)
-    notification_preset = { font = "Noto Sans Mono Medium 10", fg = theme.fg_normal },
-    weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
-    settings = function()
-        descr = weather_now["weather"][1]["description"]:lower()
-        units = math.floor(weather_now["main"]["temp"])
-        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
-    end
-})
---]]
-
--- / fs
---[[ commented because it needs Gio/Glib >= 2.54
-local fsicon = wibox.widget.imagebox(theme.widget_fs)
-theme.fs = lain.widget.fs({
-    notification_preset = { font = "Noto Sans Mono Medium 10", fg = theme.fg_normal },
-    settings  = function()
-        widget:set_markup(markup.fontfg(theme.font, "#80d9d8", string.format("%.1f", fs_now["/"].used) .. "% "))
-    end
-})
---]]
-
--- Mail IMAP check
---[[ to be set before use
-local mailicon = wibox.widget.imagebox()
-theme.mail = lain.widget.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    settings = function()
-        if mailcount > 0 then
-            mailicon:set_image(theme.widget_mail)
-            widget:set_markup(markup.fontfg(theme.font, "#cccccc", mailcount .. " "))
-        else
-            widget:set_text("")
-            --mailicon:set_image() -- not working in 4.0
-            mailicon._private.image = nil
-            mailicon:emit_signal("widget::redraw_needed")
-            mailicon:emit_signal("widget::layout_changed")
-        end
-    end
-})
---]]
-
--- CPU
-local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
-local cpu = lain.widget.cpu({
-    settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
-    end
-})
-
--- Coretemp
-local tempicon = wibox.widget.imagebox(theme.widget_temp)
-local temp = lain.widget.temp({
-    settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#f1af5f", coretemp_now .. "°C "))
-    end
-})
-
--- Battery
-local baticon = wibox.widget.imagebox(theme.widget_batt) --""
-local bat = lain.widget.bat({
-    settings = function()
-        local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
-
-        if bat_now.ac_status == 1 then
-            perc = perc .. " 🔌"    -- ""
-        end
-
-        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
-    end
-})
-
--- ALSA volume
-local volicon = wibox.widget.imagebox(theme.widget_vol) -- ""
-theme.volume = lain.widget.alsa({
-    settings = function()
-        if volume_now.status == "off" then
-            volume_now.level = volume_now.level .. "M"
-        end
-
-        widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
-    end
-})
-
--- Net
-local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
-local netdowninfo = wibox.widget.textbox()
-local netupicon = wibox.widget.imagebox(theme.widget_netup)
-local netupinfo = lain.widget.net({
-    settings = function()
-        --[[ uncomment if using the weather widget
-        if iface ~= "network off" and
-           string.match(theme.weather.widget.text, "N/A")
-        then
-            theme.weather.update()
-        end
-        --]]
-
-        widget:set_markup(markup.fontfg(theme.font, "#e54c62", net_now.sent .. " "))
-        netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", net_now.received .. " "))
-    end
-})
-
--- MEM
-local memicon = wibox.widget.imagebox(theme.widget_mem)
-local memory = lain.widget.mem({
-    settings = function()
-        --widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.used .. "M "))
-        widget:set_markup(markup.fontfg(theme.font, "#f1af5f", mem_now.used .. "M "))
-    end
-})
-
--- MPD
-local mpdicon = wibox.widget.imagebox()
-theme.mpd = lain.widget.mpd({
-    settings = function()
-        mpd_notification_preset = {
-            text = string.format("%s [%s] - %s\n%s", mpd_now.artist,
-                   mpd_now.album, mpd_now.date, mpd_now.title)
-        }
-
-        if mpd_now.state == "play" then
-            artist = mpd_now.artist .. " > "
-            title  = mpd_now.title .. " "
-            mpdicon:set_image(theme.widget_note_on)
-        elseif mpd_now.state == "pause" then
-            artist = "mpd "
-            title  = "paused "
-        else
-            artist = ""
-            title  = ""
-            --mpdicon:set_image() -- not working in 4.0
-            mpdicon._private.image = nil
-            mpdicon:emit_signal("widget::redraw_needed")
-            mpdicon:emit_signal("widget::layout_changed")
-        end
-        widget:set_markup(markup.fontfg(theme.font, "#e54c62", artist) .. markup.fontfg(theme.font, "#b2b2b2", title))
-    end
-})
-
-function theme.at_screen_connect(s)
-    -- Quake application
-   s.quake = lain.util.quake({ app = awful.util.terminal })
-   --s.quake = lain.util.quake({ app = "urxvt", height = 0.50, argname = "--name %s" })
-   --s.quake = lain.util.quake({ app = awful.util.terminal, height = 0.50 })
-
-    -- If wallpaper is a function, call it with the screen
-    local wallpaper = theme.wallpaper
-    if type(wallpaper) == "function" then
-        wallpaper = wallpaper(s)
-    end
-    gears.wallpaper.maximized(wallpaper, s, true)
-
-    -- Tags
-    awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
-
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(my_table.join(
-                           awful.button({}, 1, function () awful.layout.inc( 1) end),
-                           awful.button({}, 2, function () awful.layout.set( awful.layout.layouts[1] ) end),
-                           awful.button({}, 3, function () awful.layout.inc(-1) end),
-                           awful.button({}, 4, function () awful.layout.inc( 1) end),
-                           awful.button({}, 5, function () awful.layout.inc(-1) end)))
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
-
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
-
-    -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(20), bg = theme.bg_normal, fg = theme.fg_normal })
-
-    -- Add widgets to the wibox
-    s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            --s.mylayoutbox,
-            s.mytaglist,
-            s.mypromptbox,
-            --mpdicon,
-            --theme.mpd.widget,
-        },
-        s.mytasklist, -- Middle widget
-        --nil,
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            --mailicon,
-            --theme.mail.widget,
-            netdownicon,
-            netdowninfo,
-            netupicon,
-            netupinfo.widget,
-            volicon,
-            theme.volume.widget,
-            memicon,
-            memory.widget,
-            cpuicon,
-            cpu.widget,
-            --fsicon,
-            --theme.fs.widget,
-            --weathericon,
-            --theme.weather.widget,
-            --tempicon,
-            --temp.widget,
-            baticon,
-            bat.widget,
-            clockicon,
-            mytextclock,
-            wibox.widget.systray(),
-            s.mylayoutbox,
-        },
-    }
-
-    -- Create the bottom wibox
-    --s.mybottomwibox = awful.wibar({ position = "bottom", screen = s, border_width = 0, height = dpi(20), bg = theme.bg_normal, fg = theme.fg_normal })
-
-    -- Add widgets to the bottom wibox
-    --s.mybottomwibox:setup {
-    --    layout = wibox.layout.align.horizontal,
-    --    { -- Left widgets
-    --        layout = wibox.layout.fixed.horizontal,
-    --    },
-    --    s.mytasklist, -- Middle widget
-    --    { -- Right widgets
-    --        layout = wibox.layout.fixed.horizontal,
-    --        s.mylayoutbox,
-    --    },
-    --}
-end
 
 return theme

@@ -33,12 +33,14 @@ set __fish_git_prompt_char_upstream_diverged ' 🚧  '
 set __fish_git_prompt_char_upstream_equal ' 💯 '
 
 function fish_prompt --description 'Write out the prompt'
-        set_color C85 --bold
+#       set_color C85 --bold
+        set_color C85
         printf '%s@%s' (whoami) (uname -a | cut -d " " -f 2)
 #        set_color 05E
         set_color normal
         printf '%s ' (__fish_git_prompt)
-        set_color C85 --bold
+#        set_color C85 --bold
+        set_color C85
         echo -n "💻 "
         #echo -n "🐠  "
   #      set_color F32

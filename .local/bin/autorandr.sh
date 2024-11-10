@@ -56,7 +56,7 @@ configure_monitors() {
         HDMI1 | HDMI-1 | HDMI-1-0 | HDMI-1-1) # Small Monitor in table 1
             TYPE="double"
 	        EXTERNAL_MONITOR_STATUS="connected"
-            COMMAND=$COMMAND" --output "$monitor" --auto --rotate normal --left-of $PRIMARY"
+            COMMAND=$COMMAND" --output "$monitor" --auto --rotate normal --right-of $PRIMARY"
             echo "External monitor $monitor is: connected"
             ;;
         HDMI2 | HDMI-2 | HDMI-2-0 | HDMI-2-1) # Small Monitor in table 1
