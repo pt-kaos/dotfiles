@@ -15,11 +15,13 @@
 # First line removes the path; second line sets it.  Without the first line,
 # your path gets massive and fish becomes very slow.
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.local/bin $HOME/.local/bin/statusbar $HOME/Applications /usr/local/bin/QNAP/QsyncClient $fish_user_paths
+set -U fish_user_paths $HOME/.local/bin $HOME/.local/bin/statusbar $HOME/.bin $HOME/Applications /usr/local/bin/QNAP/QsyncClient $fish_user_paths
 set fish_greeting                      # Supresses fish's intro message
 set TERM "xterm-256color"              # Sets the terminal type
 set EDITOR "nvim"
 #set -x OPENAI_API_KEY (cat ~/.config/nvim/chatgpt.conf)
+set -x GEMINI_API_KEY (cat ~/Documents/Programing/AI-ML/_keys/_google.key)
+set -x AVANTE_GEMINI_API_KEY (cat ~/Documents/Programing/AI-ML/_keys/_google.key)
 
 ### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
 set fish_color_normal brcyan
@@ -97,6 +99,7 @@ alias fgrep='fgrep --color=auto'        #Colorize fgrep output
 # human-readable sizes
 alias df='df -h'            #df command with human readable sizes
 alias free='free -m'        #free command with human readable sizes
+alias du='du -hd1'      #disk usage command in MB only for the Level 1 directory
 alias dum='du -BM -d1'      #disk usage command in MB only for the Level 1 directory
 
 # broot
@@ -131,12 +134,16 @@ alias .3='cd ../../..'           #back three dirs
 alias .4='cd ../../../..'        #back four dirs
 alias .5='cd ../../../../..'     #back five dirs
 
+alias k='kubectl'
+
+alias detsetsrv1='export DET_MASTER=192.168.1.100:9080'
+
 ### START NEOFECH ###
 neofetch
 
 ### CONDA INITIATIZATION ###
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-alias conda_init='eval /home/pedro/anaconda3/bin/conda "shell.fish" "hook" $argv | source'
+# alias conda_init='eval /home/pedro/anaconda3/bin/conda "shell.fish" "hook" $argv | source'
 # <<< conda initialize <<<
 
