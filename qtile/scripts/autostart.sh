@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function run {
-  if ! pgrep $1 ;
+  if ! pgrep -x $(basename $1 | head -c 15) 1>/dev/null;
   then
     $@&
   fi
@@ -10,8 +10,6 @@ function run {
 #Set your native resolution IF it does not exist in xrandr
 #More info in the script
 #run $HOME/.config/qtile/scripts/set-screen-resolution-in-virtualbox.sh
-
-/home/pedro/.local/bin/autorandr.sh
 
 #Find out your monitor name with xrandr or arandr (save and you get this line)
 #xrandr --output VGA-1 --primary --mode 1360x768 --pos 0x0 --rotate normal
@@ -23,11 +21,20 @@ function run {
 #change your keyboard if you need it
 #setxkbmap -layout be
 
+keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
+
+if [ $keybLayout = "be" ]; then
+  cp $HOME/.config/qtile/config-azerty.py $HOME/.config/qtile/config.py
+fi
+
 #autostart ArcoLinux Welcome App
 run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop &
 
 #Some ways to set your wallpaper besides variety or nitrogen
+feh --bg-fill /usr/share/backgrounds/archlinux/arch-wallpaper.jpg &
 feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
+#wallpaper for other Arch based systems
+#feh --bg-fill /usr/share/archlinux-tweak-tool/data/wallpaper/wallpaper.png &
 #start the conky to learn the shortcuts
 (conky -c $HOME/.config/qtile/scripts/system-overview) &
 
@@ -42,7 +49,7 @@ run pamac-tray &
 run xfce4-power-manager &
 numlockx on &
 blueberry-tray &
-picom --config $HOME/.config/picom/picom.conf &
+picom --config $HOME/.config/qtile/scripts/picom.conf &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 
@@ -59,4 +66,3 @@ run volumeicon &
 #run spotify &
 #run atom &
 #run telegram-desktop &
-run /usr/local/bin/QNAP/QsyncClient/Qsync.sh &
