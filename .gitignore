@@ -4,3 +4,5 @@
 *.prev
 *.older
 MBestKing
+dot_local_bin
+thmvpn.sh

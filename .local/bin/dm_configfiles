@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-DMENU="dmenu -i -l 20 -p"
+DMENU="rofi -dmenu -i -l 20 -p"
 TERM="alacritty -e "
 EDITOR="nvim"
 
@@ -8,10 +8,12 @@ declare -A confedit_list
 #confedit_list[confedit]="$HOME/.config/dmscripts/config"
 confedit_list[alacritty]="$HOME/.config/alacritty/alacritty.yml"
 confedit_list[awesome]="$HOME/.config/awesome/rc.lua"
+confedit_list[hyprland]="$HOME/.config/hypr/hyprland.lua"
+confedit_list[waybar]="$HOME/.config/waybar/config.jsonc"
 confedit_list[bash]="$HOME/.bashrc"
 #confedit_list[broot]="$HOME/.config/broot/conf.toml"
 confedit_list[fish]="$HOME/.config/fish/config.fish"
-confedit_list[neovim]="$HOME/.config/nvim/lua/custom/init.lua"
+confedit_list[neovim]="$HOME/.config/nvim/init.lua"
 confedit_list[picom]="$HOME/.config/picom/picom.conf"
 confedit_list[qtile]="$HOME/.config/qtile/config.py"
 #confedit_list[ssh]="$HOME/.ssh/config"
