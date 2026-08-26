@@ -3,11 +3,11 @@
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
 	//"mod": "dock",
-    "height": 20,
+    "height": 26,
     //"exclusive": true,
     //"passthrough": false,
     //"gtk-layer-shell": true,
-    "reload_style_on_change": false, // make it off when not styling so you save disk being on always for the style.css
+    "reload_style_on_change": true, // make it off when not styling so you save disk being on always for the style.css
     //"width": 1280,
     //"height": 12, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
@@ -26,13 +26,13 @@
         "hyprland/window"
     ],
     "modules-right": [
-        "memory",
-        "cpu",
         "network",
-        "backlight",
-        "backlight/slider",
+        "cpu",
+        "memory",
         "pulseaudio",
         "pulseaudio/slider",
+        "backlight",
+        "backlight/slider",
         "clock",
         "battery",
         "tray",
@@ -83,8 +83,8 @@
         }
     },
     "tray": {
-        "icon-size": 12,
-        "spacing": 6,
+        "icon-size": 16,
+        "spacing": 8,
         "icons": {
            "blueman": "bluetooth",
         //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
@@ -220,7 +220,7 @@
         "min-length": 2
     },
     "backlight/slider": {
-        "min": 5,
+        "min": 0,
         "max": 100,
         "rotate": 0,
         "orientation": "vertical",
