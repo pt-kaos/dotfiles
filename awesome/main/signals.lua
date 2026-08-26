@@ -1,22 +1,56 @@
---local gears = require("gears")
+local gears = require("gears")
 local awful = require("awful")
 local beautiful = require("beautiful")
 
--- Reload awesome when a new screen is added or removed
-screen.connect_signal("added", function(s)
-	awesome.restart()
-end)
-screen.connect_signal("removed", function(s)
-	awesome.restart()
+-- ===================================================================
+-- -- @ Custom: Robustly handle screen disconnections
+--
+-- This works by proactively storing the client's last known tag on the
+-- client object itself. When a screen is removed, Awesome has already
+-- moved the clients from that screen to the first tag of the primary
+-- screen by the time the "removed" signal fires.
+--
+-- By tracking the tag *before* that happens, we can correctly restore
+-- the client to its corresponding tag on the primary screen.
+-- ===================================================================
+
+-- Store the client's tag whenever it changes. This is our persistent state.
+client.connect_signal("property::first_tag", function(c)
+    -- Use a custom property on the client object to store its last tag.
+    c.last_tag = c.first_tag
 end)
 
---awful.screen.connect_signal("request::tag_clients", function(s)
---	if s.outputs[1] then
---		awful.spawn.with_shell("autorandr --load dual_mon")
---	else
---		awful.spawn.with_shell("autorandr --load single_mon")
---	end
---end)
+-- When a screen is removed, move its clients to the correct tags on the primary screen.
+screen.connect_signal("removed", function(s)
+    local clients_to_move = {}
+    for _, c in ipairs(client.get()) do
+        -- The screen property has already been updated by Awesome,
+        -- so we check if the client's *last known* screen was the one removed.
+        if c.screen == s then
+            table.insert(clients_to_move, c)
+        end
+    end
+
+    -- A minimal delay is still used to ensure this logic runs after
+    -- Awesome's initial, disruptive client shuffle is complete.
+    gears.timer.start_new(0.01, function()
+        local primary_screen = screen.primary
+        if not primary_screen then return false end
+
+        for _, c in ipairs(clients_to_move) do
+            -- Check if the client is still valid and has our custom property.
+            if c.valid and c.last_tag then
+                local tag_name = c.last_tag.name
+                local new_tag = awful.tag.find_by_name(primary_screen, tag_name)
+                if new_tag then
+                    c:move_to_tag(new_tag)
+                end
+            end
+        end
+        return false -- The timer only needs to run once.
+    end)
+end)
+
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
@@ -38,6 +72,9 @@ end)
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
+    -- Set the client's initial last_tag property.
+    c.last_tag = c.first_tag
+
 	-- Start the new client as slave.
 	-- tenho tido esta função comentada!!!!
 	--if not awesome.startup then awful.client.setslave(c) end

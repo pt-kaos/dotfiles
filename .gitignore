@@ -1,0 +1,6 @@
+.env
+*.bck
+*.bak
+*.prev
+*.older
+MBestKing

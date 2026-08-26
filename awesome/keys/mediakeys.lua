@@ -1,0 +1,35 @@
+-- ALSA volume control
+--
+--local awful = require 'awful'
+--local gears = require 'gears'
+--
+--local audio_keys = my_table.join(
+--    awful.key({}, 'XF86AudioRaiseVolume', function()
+--        os.execute(string.format('amixer -q set %s 1%%+', beautiful.volume.channel))
+--        beautiful.volume.update()
+--    end, { description = 'Volume +1%' }),
+--
+--    awful.key({}, 'XF86AudioLowerVolume', function()
+--        os.execute(string.format('amixer -q set %s 1%%-', beautiful.volume.channel))
+--        beautiful.volume.update()
+--    end, { description = 'Volume -1%' }),
+--
+--    awful.key({}, 'XF86AudioMute', function()
+--        os.execute(string.format('amixer -q set %s toggle', beautiful.volume.togglechannel or beautiful.volume.channel))
+--        beautiful.volume.update()
+--    end, { description = 'Volume Toggle Mute' }),
+--
+--    awful.key({}, 'XF86AudioPlay', function()
+--        awful.util.spawn('playerctl play-pause', false)
+--    end, { description = 'Play/Pause Music' }),
+--
+--    awful.key({}, 'XF86AudioNext', function()
+--        awful.util.spawn('playerctl next', false)
+--    end, { description = 'Play Next Music' }),
+--
+--    awful.key({}, 'XF86AudioPrev', function()
+--        awful.util.spawn('playerctl previous', false)
+--    end, { description = 'Play Previous Music' })
+--)
+--
+--return audio_keys

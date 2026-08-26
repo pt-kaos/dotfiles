@@ -9,7 +9,8 @@ vol = lain.widget.alsa({
 		local volicon = beautiful.widget_volmed_text
 		local level = volume_now.level
 		if volume_now.status == "off" then
-			volume_now.level = volume_now.level .. beautiful.widget_volmute_text
+			--volume_now.level = volume_now.level .. beautiful.widget_volmute_text
+			volicon = beautiful.widget_volmute_text
 		end
 		if level < 15 then
 			volicon = beautiful.widget_volmin_text

@@ -111,6 +111,9 @@ alias rm='rm -i'            #rm command change the default behaviour to confirm 
 alias mv='mv -i'            #mv command change the default behaviour to confirm before executing
 alias cp="cp -i"            #cp command change the default behaviour to confirm before executing
 
+# OpenClaw commands
+alias openclaw='~/.npm-global/bin/openclaw'
+
 # termbin
 alias tb="nc termbin.com 9999"      #termbin to paste comandline output
 
@@ -136,7 +139,11 @@ alias .5='cd ../../../../..'     #back five dirs
 
 alias k='kubectl'
 
-alias detsetsrv1='export DET_MASTER=192.168.1.100:9080'
+# Git
+alias git_ptkaos='gh auth switch --user pt-kaos && git config --global user.email "pedro_teodoro@hotmail.com"'
+alias git_ptarch='gh auth switch --user pteo-arch && git config --global user.email "pedro.teodoro@pm.me"'
+
+# alias detsetsrv1='export DET_MASTER=192.168.1.100:9080'
 
 ### START NEOFECH ###
 neofetch
@@ -147,3 +154,9 @@ neofetch
 # alias conda_init='eval /home/pedro/anaconda3/bin/conda "shell.fish" "hook" $argv | source'
 # <<< conda initialize <<<
 
+# OpenClaw Completion
+source "/home/pedro/.openclaw/completions/openclaw.fish"
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/pedro/.local/bin" $PATH

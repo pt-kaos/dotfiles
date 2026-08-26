@@ -1,0 +1,83 @@
+-- ~/.awesome/themes/harmonic16/theme.lua
+-- awesome wm theme
+-- Base16 harmonic16 by Jannik Siebert (https://github.com/janniks)
+-- template by Luke Jones @luke-nukem
+
+--{{{ Main
+local awful = require("awful")
+awful.util = require("awful.util")
+
+theme = {}
+
+home          = os.getenv("HOME")
+config        = awful.util.getdir("config")
+shared        = "/usr/share/awesome"
+if not awful.util.file_readable(shared .. "/icons/awesome16.png") then
+    shared    = "/usr/share/local/awesome"
+end
+sharedicons   = shared .. "/icons"
+sharedthemes  = shared .. "/themes"
+themes        = config .. "/themes"
+themename     = "/harmonic16"
+if not awful.util.file_readable(themes .. themename .. "/theme.lua") then
+       themes = sharedthemes
+end
+themedir      = themes .. themename
+
+theme.icon_theme = "Numix-Circle"
+theme.font       = "Cantarell 10"
+theme.wallpaper  = themedir .. "/background.png"
+--}}}
+
+
+-- {{{ Colors
+theme.fg_normal     = "#0b1c2c"
+theme.fg_focus      = "#223b54"
+theme.fg_urgent     = "#0b1c2c"
+theme.fg_minimize   = "#627e99"
+theme.bg_normal     = "#8b56bf"
+theme.bg_focus      = "#56bf8b"
+theme.bg_urgent     = "#bf8b56"
+theme.bg_minimize   = "#568bbf"
+-- }}}
+
+-- {{{ Borders
+theme.border_width  = "3"
+theme.border_normal = "#568bbf"
+theme.border_focus  = theme.bg_focus
+theme.border_marked = "#8bbf56"
+-- }}}
+
+-- {{{ Titlebars
+theme.titlebar_bg_focus  = theme.bg_focus
+theme.titlebar_bg_normal = theme.bg_normal
+-- }}}
+
+-- {{{ Menu
+theme.menu_height = "5"
+theme.menu_width  = "70"
+theme.menu_fg_normal = theme.fg_normal
+theme.menu_fg_focus = theme.fg_focus
+theme.menu_bg_normal = theme.bg_normal
+theme.menu_bg_focus = theme.bg_focus
+theme.menu_border_color = theme.bg_focus
+-- }}}
+
+-- {{{ Icons / Misc.
+theme.layout_fairh = themedir .. "/layouts/fairhw.png"
+theme.layout_fairv = themedir .. "/layouts/fairvw.png"
+theme.layout_floating  = themedir .. "/layouts/floatingw.png"
+theme.layout_magnifier = themedir .. "/layouts/magnifierw.png"
+theme.layout_max = themedir .. "/layouts/maxw.png"
+theme.layout_fullscreen = themedir .. "/layouts/fullscreenw.png"
+theme.layout_tilebottom = themedir .. "/layouts/tilebottomw.png"
+theme.layout_tileleft   = themedir .. "/layouts/tileleftw.png"
+theme.layout_tile = themedir .. "/layouts/tilew.png"
+theme.layout_tiletop = themedir .. "/layouts/tiletopw.png"
+theme.layout_spiral  = themedir .. "/layouts/spiralw.png"
+theme.layout_dwindle = themedir .. "/layouts/dwindlew.png"
+theme.awesome_icon = themedir .. "/menu.png"
+-- }}}
+
+return theme
+
