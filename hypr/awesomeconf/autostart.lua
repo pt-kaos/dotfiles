@@ -17,10 +17,12 @@ hl.on('hyprland.start', function()
     hl.exec_cmd 'hyprpaper'
     hl.exec_cmd 'hypridle'
     --hl.exec_cmd 'nitrogen --restore'
-    hl.exec_cmd 'pamac-tray'
+    -- pamac-tray dropped: this build has no libappindicator/SNI support, so it
+    -- can never register with waybar's tray under Wayland. Replaced by the
+    -- "custom/updates" waybar module (see waybar/updates.sh).
     hl.exec_cmd 'blueberry-tray'
     hl.exec_cmd 'numlockx on'
-    hl.exec_cmd 'Qsync'
+    hl.exec_cmd '/usr/local/bin/QNAP/QsyncClient/Qsync'
     hl.exec_cmd 'hyprlauncher -d'
     --hl.exec_cmd 'qs'
     hl.exec_cmd 'waybar'

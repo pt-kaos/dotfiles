@@ -50,3 +50,40 @@ hl.window_rule {
     move = '20 monitor_h-120',
     float = true,
 }
+
+------------------------------------
+---- APP -> WORKSPACE ASSIGNMENT ----
+------------------------------------
+-- All workspaces 1-9 are pinned to eDP-1 (the laptop screen) in monitors.lua,
+-- so assigning a workspace here always lands the app on the laptop display.
+-- Verify class names with `hyprctl clients -j` if an app doesn't land correctly.
+
+hl.window_rule {
+    name = 'firefox-workspace-1',
+    match = { class = '(?i)^firefox$' },
+    workspace = '1',
+}
+
+hl.window_rule {
+    name = 'brave-workspace-2',
+    match = { class = '(?i)^brave-browser$' },
+    workspace = '2',
+}
+
+hl.window_rule {
+    name = 'thunderbird-workspace-3',
+    match = { class = '(?i)^org\\.mozilla\\.thunderbird$' },
+    workspace = '3',
+}
+
+hl.window_rule {
+    name = 'libreoffice-workspace-8',
+    match = { class = '(?i)^libreoffice-.*$' },
+    workspace = '8',
+}
+
+hl.window_rule {
+    name = 'keepassxc-workspace-9',
+    match = { class = '(?i)^(org\\.keepassxc\\.keepassxc|keepassxc)$' },
+    workspace = '9',
+}

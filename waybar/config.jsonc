@@ -35,6 +35,7 @@
         "backlight/slider",
         "clock",
         "battery",
+        "custom/updates",
         "tray",
         "idle_inhibitor",
         "custom/power"
@@ -231,6 +232,13 @@
         "format": "󰐥",
         "tooltip": false,
         "on-click": "~/.config/waybar/power.sh"
+    },
+    "custom/updates": {
+        "return-type": "json",
+        "exec": "~/.config/waybar/updates.sh",
+        "interval": 900,
+        "on-click": "pamac-manager --updates",
+        "signal": 8
     }
     //"power-profiles-daemon": {
     //  "format": "{icon}",

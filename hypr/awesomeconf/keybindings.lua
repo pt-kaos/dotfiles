@@ -40,12 +40,13 @@ hl.bind(mainMod .. ' + ESCAPE', hl.dsp.exec_cmd(terminal .. ' -e btop'), { descr
 -- Function Keys
 hl.bind(mainMod .. ' + F1', hl.dsp.exec_cmd(browser1), { description = 'Launch Firefox' })
 hl.bind(mainMod .. ' + F2', hl.dsp.exec_cmd(browser2), { description = 'Launch Brave' })
-hl.bind(mainMod .. ' + F3', hl.dsp.exec_cmd(editor), { description = 'Launch Editor' })
-hl.bind(mainMod .. ' + F4', hl.dsp.exec_cmd(mailclient), { description = 'Launch Thunderbird' })
-hl.bind(mainMod .. ' + F5', hl.dsp.exec_cmd(pwmanager), { description = 'Launch KeepassXP' })
+hl.bind(mainMod .. ' + F3', hl.dsp.exec_cmd(mailclient), { description = 'Launch Thunderbird' })
+hl.bind(mainMod .. ' + F4', hl.dsp.exec_cmd(editor), { description = 'Launch Editor' })
+hl.bind(mainMod .. ' + F5', hl.dsp.exec_cmd(filesharing), { description = 'Launch LocalSend' })
 hl.bind(mainMod .. ' + F6', hl.dsp.exec_cmd(mediaplayer), { description = 'Launch Media Player' })
 hl.bind(mainMod .. ' + F7', hl.dsp.exec_cmd(vmmanager), { description = 'Launch Hypervisor' })
 hl.bind(mainMod .. ' + F8', hl.dsp.exec_cmd(office), { description = 'Launch LibreOffice' })
+hl.bind(mainMod .. ' + F9', hl.dsp.exec_cmd(pwmanager), { description = 'Launch KeepassXP' })
 hl.bind(mainMod .. ' + F10', hl.dsp.exec_cmd(menu), { description = 'Launch Menu' })
 hl.bind(mainMod .. ' + F11', hl.dsp.exec_cmd(dmenu), { description = 'Launch DMenu' })
 
