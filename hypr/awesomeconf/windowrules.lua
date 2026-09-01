@@ -51,6 +51,22 @@ hl.window_rule {
     float = true,
 }
 
+-- pavucontrol: open as a small, centered, rounded floating panel (not tiled)
+-- on whatever workspace is focused. Class is org.pulseaudio.pavucontrol on
+-- Wayland; the alternation keeps it working if it ever runs under XWayland.
+hl.window_rule {
+    name = 'pavucontrol-floating',
+    match = { class = '^(org\\.pulseaudio\\.pavucontrol|pavucontrol)$' },
+
+    float = true,
+    size = '720 600',
+    center = true,
+    rounding = 12,
+    opacity = '0.97',
+    animation = 'popin 80%',
+    -- dim_around = true,  -- uncomment for a modal-style dim behind the panel
+}
+
 ------------------------------------
 ---- APP -> WORKSPACE ASSIGNMENT ----
 ------------------------------------

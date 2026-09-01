@@ -16,6 +16,10 @@ hl.config {
         kb_rules = '',
 
         follow_mouse = 0,
+        -- Without this, floating windows still grab focus on hover (and drop it
+        -- when the pointer leaves), ignoring follow_mouse = 0. 0 = focus only
+        -- changes on click or keyboard, for floating and tiled alike.
+        float_switch_override_focus = 0,
 
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 
