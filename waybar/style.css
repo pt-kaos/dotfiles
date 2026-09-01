@@ -1,17 +1,10 @@
 /* ============================================================
  *   COLOR PALETTE
- *   One accent (moss green) used sparingly; everything else is
- *   neutral. Warning/critical only appear when a module actually
- *   enters that state.
+ *   Defined in theme/palette.sh, generated into colors.css by
+ *   theme/apply.sh. One accent (moss green), used sparingly;
+ *   warning/critical only when a module enters that state.
  * ============================================================ */
-@define-color bar-bg rgba(18, 20, 16, 0.78);
-@define-color capsule-bg rgba(255, 255, 255, 0.05);
-@define-color fg #d3d7d1;
-@define-color dim-fg #8b978a;
-@define-color accent #8fae6f;
-@define-color accent-dim #607850;
-@define-color warning #e0a458;
-@define-color critical #e05c5c;
+@import url("colors.css");
 
 /* ============================================================
  *   GLOBAL FONTS
@@ -105,7 +98,7 @@ window#waybar.empty #window {
  *   Group A: network / cpu / memory   (monitoring)
  *   Group B: pulseaudio(+slider) / backlight(+slider) (hardware)
  *   Group C: clock                    (standalone, accented)
- *   Group D: battery / tray / idle_inhibitor / power
+ *   Group D: battery / tray / idleinhibitor / power
  * ============================================================ */
 
 /* -- Group A: monitoring -- */
@@ -208,11 +201,11 @@ window#waybar.empty #window {
   border-radius: 10px;
 }
 
-/* -- Group D: battery / updates / tray / idle_inhibitor / power -- */
+/* -- Group D: battery / updates / tray / idleinhibitor / power -- */
 #battery,
 #custom-updates,
 #tray,
-#idle_inhibitor,
+#custom-idleinhibitor,
 #custom-power {
   background: @capsule-bg;
   color: @fg;
@@ -251,12 +244,13 @@ window#waybar.empty #window {
   color: @critical;
 }
 
-#idle_inhibitor {
+#custom-idleinhibitor {
   padding: 0 6px;
 }
 
-#idle_inhibitor.activated {
-  color: @accent;
+/* idle inhibited (hypridle stopped) -> discrete orange; normal state stays neutral */
+#custom-idleinhibitor.inhibited {
+  color: @warning;
 }
 
 #custom-power {

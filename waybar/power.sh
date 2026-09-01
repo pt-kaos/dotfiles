@@ -21,8 +21,8 @@ case "$SELECTED" in
     systemctl hibernate
     ;;
   "Logout")
-    # This command is for Hyprland. 
-    # If you use a different compositor, change this line.
-    hyprctl dispatch exit
+    # Hyprland is running the Lua config, so IPC dispatch takes a Lua
+    # expression, not the legacy "exit" string.
+    hyprctl dispatch 'hl.dsp.exit()'
     ;;
 esac

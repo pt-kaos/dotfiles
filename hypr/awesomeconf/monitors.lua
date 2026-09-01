@@ -23,13 +23,126 @@ hl.monitor {
     scale = '1',
 }
 
-for i = 1, 9 do
-    hl.workspace_rule { workspace = tostring(i), monitor = 'eDP-1', persistent = true, default = (i == 1) }
+------------------------------------------------
+---- PER-MONITOR WORKSPACES (AwesomeWM tags) ---
+------------------------------------------------
+WS_PER_MON = 9 -- tags per monitor
+WS_BLOCK = 10 -- ID stride between monitors (must be > WS_PER_MON)
+
+-- Monitors listed here get blocks 0,1,2... in this order (stable across replug).
+-- Anything not listed falls back to its Hyprland id.
+local WS_MON_ORDER = { 'eDP-1', 'HDMI-A-1' }
+
+function ws_block_of(mon) -- global: also used in keybindings.lua
+    if not mon then
+        return 0
+    end
+    for i, name in ipairs(WS_MON_ORDER) do
+        if name == mon.name then
+            return i - 1
+        end
+    end
+    return mon.id
 end
 
---for i = 6, 10 do
---    hl.workspace_rule { workspace = tostring(i), monitor = 'HDMI-A-1', persistent = true, default = (i == 6) }
---end
+function ws_base_of(mon)
+    return ws_block_of(mon) * WS_BLOCK
+end
+
+local function make_ws_rules(mon)
+    local base = ws_base_of(mon)
+    for i = 1, WS_PER_MON do
+        hl.workspace_rule {
+            workspace = tostring(base + i),
+            monitor = mon.name,
+            persistent = true,
+            default = (i == 1),
+        }
+    end
+end
+
+for _, mon in ipairs(hl.get_monitors()) do
+    make_ws_rules(mon)
+end
+hl.on('monitor.added', function(mon)
+    make_ws_rules(mon)
+end)
+
+------------------------------------------------
+---- FOLD WINDOWS BACK WHEN A MONITOR LEAVES ---
+------------------------------------------------
+-- When a secondary monitor is unplugged, move its windows onto the primary
+-- monitor instead of leaving them stranded on now-hidden workspaces:
+--   * A window whose class has a preferred workspace (mirrors the app->workspace
+--     rules in windowrules.lua) returns to THAT workspace on the primary monitor.
+--       e.g. Brave on secondary ws 5 (id 15) -> primary ws 2
+--   * Any other window keeps its slot: secondary ws N -> primary ws N.
+--       e.g. a terminal on secondary ws 6 (id 16) -> primary ws 6
+--
+-- Keep this list in sync with the class assignments in windowrules.lua.
+-- Values are the LOCAL workspace index (1..WS_PER_MON) on the primary monitor.
+local PREFERRED_WS = {
+    { match = 'firefox', ws = 1 },
+    { match = 'brave-browser', ws = 2 },
+    { match = 'thunderbird', ws = 3 },
+    { match = 'libreoffice', ws = 8 },
+    { match = 'keepassxc', ws = 9 },
+}
+
+local PRIMARY_MON = WS_MON_ORDER[1]
+
+local function preferred_ws_for(class)
+    if not class then
+        return nil
+    end
+    local c = class:lower()
+    for _, rule in ipairs(PREFERRED_WS) do
+        if c:find(rule.match, 1, true) then
+            return rule.ws
+        end
+    end
+    return nil
+end
+
+local function consolidate_onto_primary(removed_name, removed_base)
+    -- Pick the surviving primary monitor (fall back to whatever is left).
+    local target
+    for _, m in ipairs(hl.get_monitors()) do
+        if m.name == PRIMARY_MON then
+            target = m
+        end
+    end
+    target = target or hl.get_monitors()[1]
+    if not target or target.name == removed_name then
+        return
+    end
+
+    local target_base = ws_base_of(target)
+    local lo, hi = removed_base + 1, removed_base + WS_PER_MON
+
+    for _, win in ipairs(hl.get_windows()) do
+        local ws = win.workspace
+        if ws and ws.id >= lo and ws.id <= hi then
+            local local_idx = ws.id - removed_base
+            local dest_idx = preferred_ws_for(win.class) or local_idx
+            hl.dispatch(hl.dsp.window.move {
+                window = win,
+                workspace = target_base + dest_idx,
+                follow = false, -- move silently, don't chase focus per window
+            })
+        end
+    end
+end
+
+hl.on('monitor.removed', function(mon)
+    -- Read the monitor's identity now, while the object is still valid, then
+    -- defer the actual moves so Hyprland finishes its own teardown first.
+    local removed_name = mon and mon.name
+    local removed_base = ws_base_of(mon)
+    hl.timer(function()
+        consolidate_onto_primary(removed_name, removed_base)
+    end, { timeout = 200, type = 'oneshot' })
+end)
 
 --package.path = package.path .. ';../plugins/split-monitor-workspaces/lua/?.lua'
 --local smw = require 'split-monitor-workspaces'
