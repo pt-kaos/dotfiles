@@ -62,7 +62,35 @@ hl.bind('ALT + TAB', hl.dsp.window.cycle_next(), { description = 'Next Window' }
 hl.bind('ALT + SHIFT + TAB', hl.dsp.window.cycle_next { next = false }, { description = 'Previous Window' })
 
 -- Multi-monitor: move window / switch focused monitor
-hl.bind(mainMod .. ' + O', hl.dsp.window.move { monitor = '+1' }, { description = 'Send Window to Other Monitor' })
+-- Send the focused window to the *other* monitor. Resolve an explicit
+-- destination workspace instead of `monitor = '+1'`: right after a fresh boot,
+-- before any workspace has been activated on the secondary monitor, Hyprland
+-- parks it on the first globally-free id (10 here -- 1..9 and 11..19 are the
+-- persistent per-monitor sets), so `movewindow mon:+1` drops the window on that
+-- stray workspace 10. Target the other monitor's active workspace when it is one
+-- of that monitor's own 1..9 tags, otherwise its first workspace (base + 1).
+hl.bind(mainMod .. ' + O', function()
+    local mons = hl.get_monitors()
+    local cur = hl.get_active_monitor()
+    if #mons < 2 or not cur then
+        return
+    end
+    local idx = 1
+    for i, m in ipairs(mons) do
+        if m.name == cur.name then
+            idx = i
+            break
+        end
+    end
+    local other = mons[(idx % #mons) + 1]
+    local base = ws_base_of(other)
+    local aw = hl.get_active_workspace(other)
+    local dest = base + 1
+    if aw and aw.id > base and aw.id <= base + WS_PER_MON then
+        dest = aw.id
+    end
+    hl.dispatch(hl.dsp.window.move { workspace = dest })
+end, { description = 'Send Window to Other Monitor' })
 hl.bind(mainMod .. ' + CTRL + right', hl.dsp.focus { monitor = '+1' }, { description = 'Focus Next Monitor' })
 hl.bind(mainMod .. ' + CTRL + left', hl.dsp.focus { monitor = '-1' }, { description = 'Focus Previous Monitor' })
 hl.bind(mainMod .. ' + 0', hl.dsp.focus { workspace = '10' }, { description = 'Focus Previous Monitor' })
@@ -114,8 +142,10 @@ hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd 'amixer -q set Master 2%+', { lo
 hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd 'amixer -q set Master 2%-', { locked = true, repeating = true })
 hl.bind('XF86AudioMute', hl.dsp.exec_cmd 'amixer -q set %s toggle', { locked = true, repeating = true })
 hl.bind('XF86AudioMicMute', hl.dsp.exec_cmd 'amixer set Capture toggle', { locked = true, repeating = true })
-hl.bind('XF86MonBrightnessUp', hl.dsp.exec_cmd 'brightnessctl -e4 -n2 set 5%+', { locked = true, repeating = true })
-hl.bind('XF86MonBrightnessDown', hl.dsp.exec_cmd 'brightnessctl -e4 -n2 set 5%-', { locked = true, repeating = true })
+-- Brightness of the focused monitor: laptop panel via brightnessctl, external
+-- monitors via ddcutil (DDC/CI). See ~/.config/waybar/brightness.sh.
+hl.bind('XF86MonBrightnessUp', hl.dsp.exec_cmd '~/.config/waybar/brightness.sh up 5', { locked = true, repeating = true })
+hl.bind('XF86MonBrightnessDown', hl.dsp.exec_cmd '~/.config/waybar/brightness.sh down 5', { locked = true, repeating = true })
 
 -- Requires playerctl
 hl.bind('XF86AudioNext', hl.dsp.exec_cmd 'playerctl next', { locked = true })

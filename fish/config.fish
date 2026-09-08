@@ -138,6 +138,7 @@ alias .4='cd ../../../..'        #back four dirs
 alias .5='cd ../../../../..'     #back five dirs
 
 alias k='kubectl'
+alias mkb='minikube'
 
 # Git
 alias git_ptkaos='gh auth switch --user pt-kaos && git config --global user.email "pedro_teodoro@hotmail.com"'

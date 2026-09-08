@@ -252,6 +252,22 @@
         //"device": "intel_backlight",
         "scroll-step": 1
     },
+    // External-monitor brightness over DDC/CI (~/.config/waybar/brightness.sh,
+    // which wraps ddcutil). Used only by the external bar in config.jsonc, with
+    // the connector pinned so the widget always reflects its own output. The
+    // XF86MonBrightness* keybinds call the same script without a connector, so
+    // they act on the focused monitor and poke SIGRTMIN+10 to refresh here.
+    "custom/brightness": {
+        "exec": "~/.config/waybar/brightness.sh get HDMI-A-1",
+        "return-type": "json",
+        "interval": 5,
+        "signal": 10,
+        "format": " {icon} {percentage}% ",
+        "format-icons": ["󰃞", "󰃝", "󰃟", "󰃠"],
+        "min-length": 2,
+        "on-scroll-up": "~/.config/waybar/brightness.sh up 5 HDMI-A-1",
+        "on-scroll-down": "~/.config/waybar/brightness.sh down 5 HDMI-A-1"
+    },
     "custom/power": {
         "format": "󰐥",
         "tooltip": false,

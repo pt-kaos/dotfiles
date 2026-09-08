@@ -136,11 +136,14 @@ window#waybar.empty #window {
   color: @critical;
 }
 
-/* -- Group B: hardware controls -- */
+/* -- Group B: hardware controls --
+ * eDP-1 bar ends this capsule with #backlight(+slider); the external bar swaps
+ * those for #custom-brightness (DDC/CI), which then acts as the right cap. */
 #pulseaudio,
 #pulseaudio-slider,
 #backlight,
-#backlight-slider {
+#backlight-slider,
+#custom-brightness {
   background: @capsule-bg;
   color: @fg;
 }
@@ -164,6 +167,16 @@ window#waybar.empty #window {
 #backlight-slider {
   padding-right: 8px;
   border-radius: 0 10px 10px 0;
+}
+
+#custom-brightness {
+  padding: 0 10px 0 4px;
+  font-size: 14px;
+  border-radius: 0 10px 10px 0;
+}
+
+#custom-brightness:hover {
+  color: @accent;
 }
 
 #pulseaudio-slider slider,
