@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# qsync-resume-watch: after resume from sleep, restart Qsync only if it lost its NAS link.
+# Why: systemd >= 256 freezes user.slice before system-sleep hooks run, so the QNAP hook
+# (qsync_sleep_notification) cannot reach the frozen client; Qsync never learns of the
+# suspend/resume, drops its TCP link and a worker thread (UploadFileAction) spins at 100%.
+# Runs as a systemd user service; needs DISPLAY/WAYLAND_DISPLAY from the user manager env.
+set -u
+
+QSYNC_SH=/usr/local/bin/QNAP/QsyncClient/Qsync.sh
+SETTLE=25 # seconds after network-online before judging the link
+
+log() { logger -t qsync-resume-watch -- "$*"; }
+
+has_tcp() { # any established TCP socket owned by Qsync?
+  ss -tnpH state established 2>/dev/null | grep -q '"Qsync"'
+}
+
+spinning() { # any Qsync thread above 80% CPU over a 2 s sample
+  local pid
+  pid=$(pgrep -xo Qsync) || return 1
+  top -H -b -n2 -d2 -p "$pid" 2>/dev/null | awk '/^ *[0-9]+ / && $9 > 80 {f = 1} END {exit !f}'
+}
+
+restart_qsync() {
+  log "restarting Qsync"
+  pkill -x Qsync
+  for _ in 1 2 3 4 5 6 7 8 9 10; do
+    pgrep -x Qsync >/dev/null || break
+    sleep 1
+  done
+  setsid -f "$QSYNC_SH" >/dev/null 2>&1
+}
+
+on_resume() {
+  nm-online -q -t 60 || {
+    log "network not online after 60 s; skipping"
+    return
+  }
+  sleep "$SETTLE"
+  pgrep -x Qsync >/dev/null || {
+    log "Qsync not running; leaving it"
+    return
+  }
+  if ! has_tcp || spinning; then
+    restart_qsync
+  else
+    log "Qsync healthy after resume"
+  fi
+}
+
+dbus-monitor --system "type='signal',interface='org.freedesktop.login1.Manager',member='PrepareForSleep'" |
+  while read -r line; do
+    case $line in
+      *"boolean false"*) on_resume ;;
+    esac
+  done

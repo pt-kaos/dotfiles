@@ -15,7 +15,7 @@ hl.on('hyprland.start', function()
     -- Re-assert the theme (gsettings / GTK / Kvantum) from theme/palette.sh.
     hl.exec_cmd '~/.config/theme/apply.sh --boot'
     hl.exec_cmd 'nm-applet --indicator'
-    hl.exec_cmd 'hyprpolkitagent'
+    -- hl.exec_cmd 'hyprpolkitagent'
     hl.exec_cmd 'hyprpaper'
     hl.exec_cmd 'hypridle'
     --hl.exec_cmd 'nitrogen --restore'
@@ -23,7 +23,7 @@ hl.on('hyprland.start', function()
     -- can never register with waybar's tray under Wayland. Replaced by the
     -- "custom/updates" waybar module (see waybar/updates.sh).
     hl.exec_cmd 'blueberry-tray'
-    hl.exec_cmd 'numlockx on'
+    -- hl.exec_cmd 'numlockx on'
     hl.exec_cmd 'hyprlauncher -d'
     --hl.exec_cmd 'qs'
     hl.exec_cmd 'waybar'

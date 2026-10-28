@@ -10,7 +10,7 @@
     //"exclusive": true,
     //"passthrough": false,
     //"gtk-layer-shell": true,
-    "reload_style_on_change": true, // make it off when not styling so you save disk being on always for the style.css
+    "reload_style_on_change": false, // make it off when not styling so you save disk being on always for the style.css
     //"width": 1280,
     //"height": 12, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
