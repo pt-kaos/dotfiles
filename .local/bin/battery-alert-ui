@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# battery-alert-ui <warning|critical|burst> <title> <body> [ms]
+# Shows the battery overlay (Quickshell config "battery-alert"). Exit 1 if the overlay is not running.
+level=${1:?level} title=${2:?title} body=${3:-} ms=${4:-0}
+exec quickshell ipc -p "${BATTERY_ALERT_QML:-$HOME/.config/quickshell/battery-alert}" call alert popup "$level" "$title" "$body" "$ms"

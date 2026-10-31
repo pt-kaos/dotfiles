@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Battery alerts: 20% once; every 1% step from 10% down; at 5% a 15 s beep+notification burst.
+BAT=$(ls -d /sys/class/power_supply/BAT* | head -n1)
+SOUND=/usr/share/sounds/freedesktop/stereo/dialog-warning.oga
+POLL=5
+last=101   # lowest level already notified in this discharge
+
+notify() {  # level(normal|critical|burst) title body
+    echo "$(date +%T) cap=$cap $2" >> "${XDG_STATE_HOME:-$HOME/.local/state}/battery-alert.log"
+    local lvl=warning icon=0 color="rgb(ff9900)"
+    [[ $1 == critical ]] && { lvl=critical; icon=3; color="rgb(ff3333)"; }
+    [[ $1 == burst ]] && { lvl=burst; icon=3; color="rgb(ff3333)"; }
+    # Overlay (Quickshell, battery-alert-ui); fall back to hyprctl notify if it is not running.
+    "$HOME/.local/bin/battery-alert-ui" "$lvl" "$2" "$3" 2>/dev/null ||
+        hyprctl notify "$icon" 5000 "$color" "fontsize:32 $2. $3" >/dev/null
+}
+beep()   { paplay "$SOUND" 2>/dev/null & }
+
+while :; do
+    cap=$(<"$BAT/capacity"); status=$(<"$BAT/status")
+    if [[ $status != Discharging ]]; then
+        last=101
+    elif (( cap > last )); then
+        last=$cap
+    elif (( cap < last )); then
+        if (( cap == 5 )); then
+            last=$cap
+            for ((i = 0; i < 15; i++)); do
+                [[ $(<"$BAT/status") == Discharging ]] || break
+                cap=$(<"$BAT/capacity")
+                notify burst "Battery critical: ${cap}%" "Plug in the charger now."
+                beep
+                sleep 1
+            done
+        elif (( cap <= 10 )); then
+            last=$cap; notify critical "Battery low: ${cap}%" "Plug in the charger."
+        elif (( cap <= 20 && last > 20 )); then
+            last=$cap; notify normal "Battery at ${cap}%" "Consider plugging in the charger."
+        fi
+    fi
+    sleep "$POLL"
+done

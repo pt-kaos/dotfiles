@@ -1,0 +1,11 @@
+[Unit]
+Description=Battery level notifications
+After=graphical-session.target battery-alert-ui.service
+Wants=battery-alert-ui.service
+
+[Service]
+ExecStart=%h/.local/bin/battery-alert
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
