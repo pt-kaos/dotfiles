@@ -24,7 +24,7 @@ hl.bind(
     { description = 'Shutdown (with confirmation)' }
 )
 hl.bind(mainMod .. ' + E', hl.dsp.exec_cmd 'dm_configfiles', { description = 'Config Files' })
-hl.bind(mainMod .. ' + F', hl.dsp.exec_cmd(fileManager), { description = 'File Manager' })
+hl.bind(mainMod .. ' + SHIFT + E', hl.dsp.exec_cmd(fileManager), { description = 'File Manager' })
 hl.bind(mainMod .. ' + F', hl.dsp.window.float { action = 'toggle' }, { description = 'Toggle Float' })
 hl.bind(mainMod .. ' + R', hl.dsp.exec_cmd(menu), { description = 'Launch Menu' })
 hl.bind(mainMod .. ' + P', hl.dsp.window.pseudo(), { description = 'Pseudo Window' })
@@ -54,8 +54,8 @@ hl.bind(mainMod .. ' + F11', hl.dsp.exec_cmd(dmenu), { description = 'Launch DMe
 hl.bind('F12', hl.dsp.exec_cmd '~/.config/hypr/scripts/idle.sh', { description = 'Toggle Enable Idle' })
 
 -- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. ' + left', hl.dsp.focus { direction = 'left' }, { description = 'Focus Window on the Right' })
-hl.bind(mainMod .. ' + right', hl.dsp.focus { direction = 'right' }, { description = 'Focus Window on the Left' })
+hl.bind(mainMod .. ' + left', hl.dsp.focus { direction = 'left' }, { description = 'Focus Window on the Left' })
+hl.bind(mainMod .. ' + right', hl.dsp.focus { direction = 'right' }, { description = 'Focus Window on the Right' })
 hl.bind(mainMod .. ' + up', hl.dsp.focus { direction = 'up' }, { description = 'Focus Window on the Top' })
 hl.bind(mainMod .. ' + down', hl.dsp.focus { direction = 'down' }, { description = 'Focus Window on the Bottom' })
 hl.bind('ALT + TAB', hl.dsp.window.cycle_next(), { description = 'Next Window' })
@@ -93,7 +93,7 @@ hl.bind(mainMod .. ' + O', function()
 end, { description = 'Send Window to Other Monitor' })
 hl.bind(mainMod .. ' + CTRL + right', hl.dsp.focus { monitor = '+1' }, { description = 'Focus Next Monitor' })
 hl.bind(mainMod .. ' + CTRL + left', hl.dsp.focus { monitor = '-1' }, { description = 'Focus Previous Monitor' })
-hl.bind(mainMod .. ' + 0', hl.dsp.focus { workspace = '10' }, { description = 'Focus Previous Monitor' })
+hl.bind(mainMod .. ' + 0', hl.dsp.focus { workspace = '10' }, { description = 'Workspace 10' })
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -129,8 +129,8 @@ hl.bind(mainMod .. ' + mouse_down', ws_relative(1), { description = 'Next worksp
 hl.bind(mainMod .. ' + mouse_up', ws_relative(-1), { description = 'Prev workspace (focused monitor)' })
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(mainMod .. ' + mouse:272', hl.dsp.window.drag(), { mouse = true }, { description = 'Mouse Move Window' })
-hl.bind(mainMod .. ' + mouse:273', hl.dsp.window.resize(), { mouse = true }, { description = 'Mouse Resise Window' })
+hl.bind(mainMod .. ' + mouse:272', hl.dsp.window.drag(), { mouse = true, description = 'Mouse Move Window' })
+hl.bind(mainMod .. ' + mouse:273', hl.dsp.window.resize(), { mouse = true, description = 'Mouse Resize Window' })
 
 -- Laptop multimedia keys for volume and LCD brightness
 --hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd 'wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+', { locked = true, repeating = true })
@@ -138,17 +138,27 @@ hl.bind(mainMod .. ' + mouse:273', hl.dsp.window.resize(), { mouse = true }, { d
 --hl.bind('XF86AudioMute', hl.dsp.exec_cmd 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle', { locked = true, repeating = true })
 --hl.bind('XF86AudioMicMute', hl.dsp.exec_cmd 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle', { locked = true, repeating = true })
 --hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd 'amixer -q set %s 1%%+', { locked = true, repeating = true })
-hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd 'amixer -q set Master 2%+', { locked = true, repeating = true })
-hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd 'amixer -q set Master 2%-', { locked = true, repeating = true })
-hl.bind('XF86AudioMute', hl.dsp.exec_cmd 'amixer -q set %s toggle', { locked = true, repeating = true })
-hl.bind('XF86AudioMicMute', hl.dsp.exec_cmd 'amixer set Capture toggle', { locked = true, repeating = true })
+hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd 'amixer -q set Master 2%+', { locked = true, repeating = true, description = 'Volume Up' })
+hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd 'amixer -q set Master 2%-', { locked = true, repeating = true, description = 'Volume Down' })
+hl.bind('XF86AudioMute', hl.dsp.exec_cmd 'amixer -q set %s toggle', { locked = true, repeating = true, description = 'Mute Audio' })
+hl.bind('XF86AudioMicMute', hl.dsp.exec_cmd 'amixer set Capture toggle', { locked = true, repeating = true, description = 'Mute Microphone' })
 -- Brightness of the focused monitor: laptop panel via brightnessctl, external
 -- monitors via ddcutil (DDC/CI). See ~/.config/waybar/brightness.sh.
-hl.bind('XF86MonBrightnessUp', hl.dsp.exec_cmd '~/.config/waybar/brightness.sh up 5', { locked = true, repeating = true })
-hl.bind('XF86MonBrightnessDown', hl.dsp.exec_cmd '~/.config/waybar/brightness.sh down 5', { locked = true, repeating = true })
+hl.bind('XF86MonBrightnessUp', hl.dsp.exec_cmd '~/.config/waybar/brightness.sh up 5', { locked = true, repeating = true, description = 'Brightness Up' })
+hl.bind('XF86MonBrightnessDown', hl.dsp.exec_cmd '~/.config/waybar/brightness.sh down 5', { locked = true, repeating = true, description = 'Brightness Down' })
 
 -- Requires playerctl
-hl.bind('XF86AudioNext', hl.dsp.exec_cmd 'playerctl next', { locked = true })
-hl.bind('XF86AudioPause', hl.dsp.exec_cmd 'playerctl play-pause', { locked = true })
-hl.bind('XF86AudioPlay', hl.dsp.exec_cmd 'playerctl play-pause', { locked = true })
-hl.bind('XF86AudioPrev', hl.dsp.exec_cmd 'playerctl previous', { locked = true })
+hl.bind('XF86AudioNext', hl.dsp.exec_cmd 'playerctl next', { locked = true, description = 'Next Track' })
+hl.bind('XF86AudioPause', hl.dsp.exec_cmd 'playerctl play-pause', { locked = true, description = 'Play/Pause' })
+hl.bind('XF86AudioPlay', hl.dsp.exec_cmd 'playerctl play-pause', { locked = true, description = 'Play/Pause' })
+hl.bind('XF86AudioPrev', hl.dsp.exec_cmd 'playerctl previous', { locked = true, description = 'Previous Track' })
+
+-- Screenshots (logic in scripts/screenshot.sh; no Hyprland permission needed, enforce_permissions is off)
+local shot = '~/.config/hypr/scripts/screenshot.sh '
+hl.bind('Print', hl.dsp.exec_cmd(shot .. 'region'), { description = 'Screenshot region to clipboard' })
+hl.bind('SHIFT + Print', hl.dsp.exec_cmd(shot .. 'region-save'), { description = 'Screenshot region: save to ~/Pictures/Screenshots + clipboard' })
+hl.bind('CTRL + Print', hl.dsp.exec_cmd(shot .. 'full-save'), { description = 'Screenshot focused monitor: save + clipboard' })
+hl.bind(mainMod .. ' + Print', hl.dsp.exec_cmd(shot .. 'annotate'), { description = 'Screenshot with annotation (flameshot)' })
+
+-- Keybinding cheat-sheet (live from hyprctl binds -j)
+hl.bind(mainMod .. ' + slash', hl.dsp.exec_cmd '~/.config/hypr/scripts/keybinds.sh', { description = 'Show keybinding cheat-sheet' })
