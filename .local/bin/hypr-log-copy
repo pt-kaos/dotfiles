@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Copy Hyprland's tmpfs logs to persistent storage so they survive a crash/reboot.
+# Run by hypr-log-copy.timer. Silent when nothing to do.
+set -u
+src="/run/user/$(id -u)/hypr"
+dst="${XDG_STATE_HOME:-$HOME/.local/state}/max/hypr-logs"
+keep=10
+cap_mb=200
+
+[ -d "$src" ] || exit 0
+mkdir -p "$dst" || exit 0
+
+for d in "$src"/*/; do
+  [ -d "$d" ] || continue
+  inst=$(basename "$d")
+  for f in hyprland.log recoverycfg.lua; do
+    [ -f "$d$f" ] || continue
+    mkdir -p "$dst/$inst"
+    # rsync skips unchanged files (size+mtime); --inplace avoids temp copies
+    rsync -t --inplace "$d$f" "$dst/$inst/$f" 2>/dev/null
+  done
+  # record when this instance dir was last seen alive
+  [ -d "$dst/$inst" ] && date -Is >"$dst/$inst/.last-seen"
+done
+
+# prune: keep newest $keep instances
+mapfile -t all < <(ls -1dt "$dst"/*/ 2>/dev/null)
+for ((i = keep; i < ${#all[@]}; i++)); do find "${all[i]}" -delete; done
+
+# cap total size: drop oldest until under cap (never the newest)
+mapfile -t all < <(ls -1dt "$dst"/*/ 2>/dev/null)
+for ((i = ${#all[@]} - 1; i > 0; i--)); do
+  used=$(du -sm "$dst" 2>/dev/null | cut -f1)
+  [ "${used:-0}" -le "$cap_mb" ] && break
+  find "${all[i]}" -delete
+done
+exit 0

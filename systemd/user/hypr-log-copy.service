@@ -1,0 +1,7 @@
+[Unit]
+Description=Copy Hyprland tmpfs logs to persistent state
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/hypr-log-copy
+Nice=10

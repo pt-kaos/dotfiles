@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Run right after a Hyprland crash. Read-only evidence dump.
+uid=$(id -u)
+state="${XDG_STATE_HOME:-$HOME/.local/state}/max"
+sec() { printf '\n===== %s =====\n' "$*"; }
+
+sec "coredumpctl list (last 10)"
+coredumpctl list --no-pager 2>&1 | tail -n 10
+sec "ls /run/user/$uid/hypr"
+ls -la "/run/user/$uid/hypr" 2>&1
+sec "journal, last 10 min, Hyprland/start-hyprland/rtkit/kernel"
+journalctl -b --since -10min -o short-precise --no-pager 2>&1 |
+  grep -Ei 'hyprland|start-hyprland|rtkit|kernel:|sddm|watchdog' | tail -n 150
+sec "realtime-kill evidence (this boot)"
+journalctl -b -o short-precise --no-pager 2>&1 |
+  grep -Ei 'waitpid|not-cleanly|SIGKILL|RLIMIT_RTTIME|SIGXCPU|rttime|canary' | tail -n 40
+sec "sddm wayland-session.log (tail 40)"
+tail -n 40 "$HOME/.local/share/sddm/wayland-session.log" 2>&1
+sec "$HOME/.cache/hyprland"
+ls -la "$HOME/.cache/hyprland" 2>&1
+sec "saved hyprland.log copies"
+ls -lat "$state/hypr-logs" 2>&1 | head -n 8
+newest=$(ls -1t "$state/hypr-logs" 2>/dev/null | head -n1)
+[ -n "$newest" ] && tail -n 40 "$state/hypr-logs/$newest/hyprland.log" 2>&1
+sec "last heartbeat lines"
+tail -n 8 "$state/hypr-heartbeat.log" 2>&1

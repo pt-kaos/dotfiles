@@ -1,0 +1,10 @@
+[Unit]
+Description=Copy Hyprland logs every 90 s
+
+[Timer]
+OnActiveSec=5s
+OnUnitActiveSec=90s
+AccuracySec=5s
+
+[Install]
+WantedBy=timers.target

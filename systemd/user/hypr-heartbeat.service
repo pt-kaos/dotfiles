@@ -1,0 +1,7 @@
+[Unit]
+Description=Append Hyprland heartbeat line
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/hypr-heartbeat
+Nice=10

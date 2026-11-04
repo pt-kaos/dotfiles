@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# Append one status line to ~/.local/state/max/hypr-heartbeat.log (run every 5 min by timer).
+# Never prints environment values: only whether HYPRLAND_NO_RT is present.
+set -u
+state="${XDG_STATE_HOME:-$HOME/.local/state}/max"
+log="$state/hypr-heartbeat.log"
+max_bytes=524288
+mkdir -p "$state" || exit 0
+
+if [ -f "$log" ] && [ "$(stat -c %s "$log")" -gt "$max_bytes" ]; then
+  mv -f "$log" "$log.1"
+fi
+
+up=$(cut -d' ' -f1 /proc/uptime | cut -d. -f1)
+pid=$(pgrep -u "$(id -u)" -x Hyprland | head -n1)
+pol=- norT=- mon=-
+if [ -n "$pid" ]; then
+  pol=$(chrt -p "$pid" 2>/dev/null | sed -n 's/.*policy: //p' | head -n1)
+  if tr '\0' '\n' <"/proc/$pid/environ" 2>/dev/null | grep -q '^HYPRLAND_NO_RT='; then
+    norT=yes
+  else
+    norT=no
+  fi
+  sig=$(ls -1t "/run/user/$(id -u)/hypr" 2>/dev/null | head -n1)
+  mon=$(HYPRLAND_INSTANCE_SIGNATURE="$sig" timeout 3 hyprctl -j monitors 2>/dev/null |
+    jq -r '[.[] | "\(.name):\(if .disabled then "off" else "on" end)"] | join(",")' 2>/dev/null)
+  [ -n "$mon" ] || mon="hyprctl-fail"
+fi
+
+ac=-
+for p in /sys/class/power_supply/AC* /sys/class/power_supply/ADP*; do
+  [ -r "$p/online" ] && {
+    ac=$(cat "$p/online")
+    break
+  }
+done
+bat=-
+for p in /sys/class/power_supply/BAT*; do
+  [ -r "$p/capacity" ] && {
+    bat="$(cat "$p/capacity")%/$(cat "$p/status")"
+    break
+  }
+done
+
+sus=$(journalctl -k -b -g 'PM: suspend (entry|exit)' -o short-iso --no-pager -n1 2>/dev/null |
+  grep -v '^-- ' | awk '{print $1, $(NF-1), $NF}')
+[ -n "$sus" ] || sus=none
+
+printf '%s up=%ss pid=%s pol="%s" no_rt=%s mon=%s ac=%s bat=%s lastpm="%s"\n' \
+  "$(date -Is)" "$up" "${pid:--}" "$pol" "$norT" "$mon" "$ac" "$bat" "$sus" >>"$log"
+exit 0
