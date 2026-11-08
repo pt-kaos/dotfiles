@@ -161,3 +161,6 @@ source "/home/pedro/.openclaw/completions/openclaw.fish"
 
 # Added by Antigravity CLI installer
 set -gx PATH "/home/pedro/.local/bin" $PATH
+
+# Hermes Agent command
+fish_add_path "$HOME/.local/bin"

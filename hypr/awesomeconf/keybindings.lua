@@ -160,5 +160,8 @@ hl.bind('SHIFT + Print', hl.dsp.exec_cmd(shot .. 'region-save'), { description =
 hl.bind('CTRL + Print', hl.dsp.exec_cmd(shot .. 'full-save'), { description = 'Screenshot focused monitor: save + clipboard' })
 hl.bind(mainMod .. ' + Print', hl.dsp.exec_cmd(shot .. 'annotate'), { description = 'Screenshot with annotation (flameshot)' })
 
+-- kaos-launcher: bare F11 toggles the 3D app launcher (starts it if not running)
+hl.bind('F11', hl.dsp.exec_cmd '/home/pedro/Documents/_MyAgenticOS/Projects/kaos-launcher/app/kaos-launcher', { description = 'Toggle kaos-launcher' })
+
 -- Keybinding cheat-sheet (live from hyprctl binds -j)
 hl.bind(mainMod .. ' + slash', hl.dsp.exec_cmd '~/.config/hypr/scripts/keybinds.sh', { description = 'Show keybinding cheat-sheet' })

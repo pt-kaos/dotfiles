@@ -67,6 +67,19 @@ hl.window_rule {
     -- dim_around = true,  -- uncomment for a modal-style dim behind the panel
 }
 
+-- kaos-launcher (Quickshell FloatingWindow, title "kaos-launcher"): float, centred,
+-- 50% of the monitor. Keep size in step with panel_size_percent in the launcher config
+-- (default 50). Toggled by bare F11, see keybindings.lua.
+hl.window_rule {
+    name = 'kaos-launcher-floating',
+    match = { title = '^kaos-launcher$' },
+
+    float = true,
+    center = true,
+    size = 'monitor_w*0.5 monitor_h*0.5',
+    no_anim = true,
+}
+
 ------------------------------------
 ---- APP -> WORKSPACE ASSIGNMENT ----
 ------------------------------------
