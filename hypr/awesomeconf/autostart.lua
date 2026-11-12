@@ -26,7 +26,10 @@ hl.on('hyprland.start', function()
     -- hl.exec_cmd 'numlockx on'
     hl.exec_cmd 'hyprlauncher -d'
     --hl.exec_cmd 'qs'
-    hl.exec_cmd 'waybar'
+    hl.exec_cmd 'waybar 2>&1 | logger -t waybar'
+    -- kaos-launcher: resident Quickshell instance, hidden until F11 toggles it.
+    -- The wrapper starts it with `quickshell -n` (single instance).
+    hl.exec_cmd 'sleep 2 && KAOS_START_HIDDEN=1 /home/pedro/Documents/_MyAgenticOS/Projects/kaos-launcher/app/kaos-launcher'
     -- QNAP Qsync: launch via its bundled wrapper, NOT the raw binary. The wrapper
     -- exports LD_LIBRARY_PATH=/usr/local/lib/QNAP/QsyncClient and runs from the
     -- app dir so Qt can load its platform plugin; the bare binary core-dumps on

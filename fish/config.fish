@@ -112,7 +112,7 @@ alias mv='mv -i'            #mv command change the default behaviour to confirm 
 alias cp="cp -i"            #cp command change the default behaviour to confirm before executing
 
 # OpenClaw commands
-alias openclaw='~/.npm-global/bin/openclaw'
+# alias openclaw='~/.npm-global/bin/openclaw'
 
 # termbin
 alias tb="nc termbin.com 9999"      #termbin to paste comandline output
@@ -156,7 +156,7 @@ neofetch
 # <<< conda initialize <<<
 
 # OpenClaw Completion
-source "/home/pedro/.openclaw/completions/openclaw.fish"
+# source "/home/pedro/.openclaw/completions/openclaw.fish"
 
 
 # Added by Antigravity CLI installer
