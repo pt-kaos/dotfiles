@@ -1,0 +1,49 @@
+2026-11-09T02:39:13.033641Z  INFO herdr::api::server: api server listening path=/home/pedro/.config/herdr/herdr.sock
+2026-11-09T02:39:13.036254Z  INFO herdr::persist::io: session file is missing event="persist.restore" subsystem="persist" outcome="missing" path=/home/pedro/.config/herdr/session.json
+2026-11-09T02:39:13.036438Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-11-09T02:39:13.132320Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-09T02:39:13.132852Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=40 cols=119 scrollback_limit_bytes=10000000
+2026-11-09T02:39:13.133542Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=1868061
+2026-11-09T02:39:13.133712Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w1" pane_id=1
+2026-11-09T02:39:13.133719Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-11-09T02:39:13.133723Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-11-09T02:39:13.133726Z  INFO herdr::server::headless::bootstrap: created startup workspace cwd=/home/pedro
+2026-11-09T02:39:13.133772Z  INFO herdr::server::headless: client protocol socket listening path=/home/pedro/.config/herdr/herdr-client.sock
+2026-11-09T02:39:13.133799Z  INFO herdr::server::headless::bootstrap: herdr server started api_socket=/home/pedro/.config/herdr/herdr.sock client_socket=/home/pedro/.config/herdr/herdr-client.sock
+2026-11-09T02:39:13.133878Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=1868045
+2026-11-09T02:39:13.202674Z  INFO herdr::server::headless: client connected client_id=2 cols=185 rows=56 cell_width_px=9 cell_height_px=18 surface_active=true render_encoding=SemanticFrame
+2026-11-09T02:39:18.143841Z  INFO herdr::persist::writer: preserved session recovery copy event="persist.backup" subsystem="persist" outcome="ok" path=/home/pedro/.config/herdr/session.json backup_path=/home/pedro/.config/herdr/session-snapshots/session-000000000000000000001794191958140962307-1868045-0.json
+2026-11-09T02:39:18.143878Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/pedro/.config/herdr/session.json workspaces=1
+2026-11-09T02:40:08.469335Z  INFO herdr::logging: integration action finished event="integration.action" subsystem="integration" outcome="ok" action="install" target="claude"
+2026-11-09T02:40:08.475317Z  INFO herdr::logging: integration action finished event="integration.action" subsystem="integration" outcome="ok" action="install" target="opencode"
+2026-11-09T02:40:08.485297Z  INFO herdr::logging: integration action finished event="integration.action" subsystem="integration" outcome="ok" action="install" target="hermes"
+2026-11-09T03:09:13.134320Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-09T21:12:36.382326Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-10T00:33:30.718843Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-10T01:03:30.904031Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-10T01:33:30.904235Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-10T22:57:38.573295Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-10T23:27:38.574341Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-10T23:57:38.575698Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-11T00:27:38.576099Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-11T00:57:38.577172Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-11T01:27:38.578574Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-11T01:57:38.579891Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-11T02:27:38.581850Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-11T02:57:38.582903Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-11T03:27:38.584336Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-11T23:03:42.837592Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-11T23:04:09.740850Z  WARN herdr::detect::manifest_update: agent detection manifest update failed for agent agent="devin" error=fetch failed: failed to fetch https://herdr.dev/agent-detection/devin.toml
+2026-11-11T23:14:03.957313Z  INFO herdr::server::headless: client detached client_id=2
+2026-11-11T23:14:28.835214Z  INFO herdr::server::headless: client connected client_id=4 cols=185 rows=56 cell_width_px=9 cell_height_px=18 surface_active=true render_encoding=SemanticFrame
+2026-11-11T23:21:46.677754Z  INFO herdr::server::headless: client detached client_id=4
+2026-11-11T23:22:21.114836Z  INFO herdr::server::headless: client connected client_id=6 cols=185 rows=56 cell_width_px=9 cell_height_px=18 surface_active=true render_encoding=SemanticFrame
+2026-11-11T23:33:42.839436Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-11T23:45:12.558879Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-11-11T23:45:12.558969Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-11-11T23:45:17.585518Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/pedro/.config/herdr/session.json workspaces=1
+2026-11-11T23:48:59.049908Z  INFO herdr::server::headless: client connected client_id=8 cols=214 rows=66 cell_width_px=8 cell_height_px=16 surface_active=true render_encoding=SemanticFrame
+2026-11-12T00:03:43.159781Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-12T00:33:43.159934Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-12T01:12:13.762680Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-12T01:42:13.763267Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"

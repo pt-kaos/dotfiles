@@ -1,0 +1,38 @@
+2026-11-09T02:39:13.181423Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=1868044
+2026-11-09T02:39:13.181449Z  INFO herdr::client: connecting to server path=/home/pedro/.config/herdr/herdr-client.sock
+2026-11-09T02:39:13.202729Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-09T02:43:28.532643Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-09T20:52:00.072315Z  WARN herdr::client: endpoint transport failed endpoint=ssh:7836f28c3146bd47d30be442b7958ed7 error=connection was lost
+2026-11-09T20:52:01.054383Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-09T20:54:52.890192Z  WARN herdr::client: endpoint transport failed endpoint=ssh:7836f28c3146bd47d30be442b7958ed7 error=endpoint health check timed out
+2026-11-09T20:55:03.783714Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-09T20:55:34.964954Z  WARN herdr::client: endpoint transport failed endpoint=ssh:7836f28c3146bd47d30be442b7958ed7 error=endpoint health check timed out
+2026-11-09T20:56:22.226749Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-10T00:13:46.097493Z  WARN herdr::client: endpoint transport failed endpoint=ssh:7836f28c3146bd47d30be442b7958ed7 error=endpoint health check timed out
+2026-11-10T00:13:57.366263Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-10T00:16:49.157744Z  WARN herdr::client: endpoint transport failed endpoint=ssh:7836f28c3146bd47d30be442b7958ed7 error=endpoint health check timed out
+2026-11-10T00:16:53.751967Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-10T22:47:58.940865Z  WARN herdr::client: endpoint transport failed endpoint=ssh:7836f28c3146bd47d30be442b7958ed7 error=endpoint health check timed out
+2026-11-10T22:47:59.786599Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-11T23:03:42.702341Z  WARN herdr::client: endpoint transport failed endpoint=ssh:7836f28c3146bd47d30be442b7958ed7 error=connection was lost
+2026-11-11T23:03:52.815118Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-11T23:03:58.788310Z  WARN herdr::client: endpoint transport failed endpoint=ssh:7836f28c3146bd47d30be442b7958ed7 error=endpoint did not acknowledge surface revocation
+2026-11-11T23:04:14.555065Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-11T23:14:03.959771Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=1868044
+2026-11-11T23:14:28.705604Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2301850
+2026-11-11T23:14:28.705724Z  INFO herdr::client: connecting to server path=/home/pedro/.config/herdr/herdr-client.sock
+2026-11-11T23:14:28.835271Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-11T23:14:29.332961Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-11T23:21:46.682720Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=2301850
+2026-11-11T23:22:20.917292Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2309488
+2026-11-11T23:22:20.917385Z  INFO herdr::client: connecting to server path=/home/pedro/.config/herdr/herdr-client.sock
+2026-11-11T23:22:21.114862Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-11T23:22:22.219510Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-11T23:48:59.020943Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=2335948
+2026-11-11T23:48:59.021059Z  INFO herdr::client: connecting to server path=/home/pedro/.config/herdr/herdr-client.sock
+2026-11-11T23:48:59.039091Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-11T23:48:59.671797Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-12T00:47:31.202727Z  WARN herdr::client: endpoint transport failed endpoint=ssh:7836f28c3146bd47d30be442b7958ed7 error=connection was lost
+2026-11-12T00:47:31.208968Z  WARN herdr::client: endpoint transport failed endpoint=ssh:7836f28c3146bd47d30be442b7958ed7 error=connection was lost
+2026-11-12T00:47:31.950272Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-12T00:47:32.203184Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
