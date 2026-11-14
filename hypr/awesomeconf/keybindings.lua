@@ -15,6 +15,7 @@ local mainMod = 'SUPER' -- Sets "Windows" key as main modifier
 -- hl.bind(mainMod .. ' + Q', hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. ' + RETURN', hl.dsp.exec_cmd(terminal), { description = 'Launch Terminal' })
 hl.bind(mainMod .. ' + SHIFT + RETURN', hl.dsp.exec_cmd(fileManager), { description = 'Launch File Manager' })
+hl.bind(mainMod .. ' + CTRL + RETURN', hl.dsp.exec_cmd(herdr), { description = 'Launch Herdr' })
 local closeWindowBind = hl.bind(mainMod .. ' + Q', hl.dsp.window.close(), { description = 'Close Window' })
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. ' + L', hl.dsp.exec_cmd 'pidof hyprlock || hyprlock --grace 15', { description = 'Lock Screen (15s grace: any key/mouse unlocks)' })
@@ -163,5 +164,9 @@ hl.bind(mainMod .. ' + Print', hl.dsp.exec_cmd(shot .. 'annotate'), { descriptio
 -- kaos-launcher: bare F11 toggles the 3D app launcher (starts it if not running)
 hl.bind('F11', hl.dsp.exec_cmd '/home/pedro/Documents/_MyAgenticOS/Projects/kaos-launcher/app/kaos-launcher', { description = 'Toggle kaos-launcher' })
 
--- Keybinding cheat-sheet (live from hyprctl binds -j)
-hl.bind(mainMod .. ' + slash', hl.dsp.exec_cmd '~/.config/hypr/scripts/keybinds.sh', { description = 'Show keybinding cheat-sheet' })
+-- Keybinding viewer (rofi, live from hyprctl binds -j)
+hl.bind(mainMod .. ' + K', hl.dsp.exec_cmd '~/.config/hypr/scripts/keybinds.sh', { description = 'Keybindings' })
+
+-- kaos-menu (rofi): root menu and app launcher, same look as the keybindings viewer
+hl.bind(mainMod .. ' + SPACE', hl.dsp.exec_cmd '~/.config/hypr/scripts/kaos-menu.sh', { description = 'Root Menu' })
+hl.bind(mainMod .. ' + ALT + SPACE', hl.dsp.exec_cmd '~/.config/hypr/scripts/kaos-menu.sh apps', { description = 'App Launcher' })

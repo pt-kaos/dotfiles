@@ -6,3 +6,31 @@
 MBestKing
 dot_local_bin
 thmvpn.sh
+
+# herdr: runtime state, logs, sockets (herdr/ = ~/.config/herdr)
+herdr/*.log
+herdr/*.sock
+herdr/session.json
+herdr/session-snapshots/
+herdr/.plugins.lock
+
+# herdr-app: runtime state, telemetry, install ID (~/.config/herdr-app)
+herdr-app/*.sock
+herdr-app/telemetry/
+herdr-app/data/
+herdr-app/view.json
+herdr-app/window.json
+herdr-app/seen.json
+herdr-app/shared.json
+herdr-app/keys.error
+herdr-app/update-notes.json
+herdr-app/update-notes-media/
+herdr-app/layouts/.state/
+
+# herdr-app: app-regenerated stock files (rewritten on every update)
+herdr-app/AGENTS.md
+herdr-app/*.d.ts
+herdr-app/frame/
+herdr-app/icons/
+herdr-app/installed.json
+herdr-app/mods/*/gpui-kit.d.ts

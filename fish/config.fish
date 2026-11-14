@@ -111,9 +111,6 @@ alias rm='rm -i'            #rm command change the default behaviour to confirm 
 alias mv='mv -i'            #mv command change the default behaviour to confirm before executing
 alias cp="cp -i"            #cp command change the default behaviour to confirm before executing
 
-# OpenClaw commands
-# alias openclaw='~/.npm-global/bin/openclaw'
-
 # termbin
 alias tb="nc termbin.com 9999"      #termbin to paste comandline output
 
@@ -154,10 +151,6 @@ neofetch
 # !! Contents within this block are managed by 'conda init' !!
 # alias conda_init='eval /home/pedro/anaconda3/bin/conda "shell.fish" "hook" $argv | source'
 # <<< conda initialize <<<
-
-# OpenClaw Completion
-# source "/home/pedro/.openclaw/completions/openclaw.fish"
-
 
 # Added by Antigravity CLI installer
 set -gx PATH "/home/pedro/.local/bin" $PATH

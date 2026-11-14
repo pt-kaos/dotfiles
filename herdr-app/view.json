@@ -2,7 +2,10 @@
   "active": "sp9348489270d41f9b07420283f3120174",
   "spaces": {
     "pt-arch-lxc/spb0c8a949d8a326042e2bb5a99cafe11b": "pt-arch-lxc/tbb427a292c33483364130e9ccc15d062a",
-    "sp9348489270d41f9b07420283f3120174": "tbdeecd37bf68363fdf362d8a86a61874d"
+    "sp5070080f102748cf67d487d03e6bd635": "tbb252e034f4f2f2a54b63e849644dc833",
+    "sp69874708296c044218d392df4afab06e": "tbd3dd81901727391204a91231e7e90752",
+    "sp9348489270d41f9b07420283f3120174": "tb3c258fbd40e383be0b2809ea1ccac33e",
+    "spa4a75e6f29f3c53b5268c808cc2903dd": "tb7d903da1f127e92718d8e6b5577b6209"
   },
   "tabs": {
     "pt-arch-lxc/tbb427a292c33483364130e9ccc15d062a": {
@@ -23,11 +26,27 @@
       "zoomed": null,
       "settled": null
     },
+    "tb7d903da1f127e92718d8e6b5577b6209": {
+      "focused": "p12b90f91decb04e1426a1e48aa8d8bfb",
+      "before": [],
+      "zoomed": null,
+      "settled": null
+    },
+    "tbb252e034f4f2f2a54b63e849644dc833": {
+      "focused": "pad2c9161418c19d486a35152ee435d70",
+      "before": [],
+      "zoomed": null,
+      "settled": null
+    },
+    "tbd3dd81901727391204a91231e7e90752": {
+      "focused": "p411b60b08f218f3493cac5ba8ac45832",
+      "before": [],
+      "zoomed": null,
+      "settled": null
+    },
     "tbdeecd37bf68363fdf362d8a86a61874d": {
-      "focused": "pb52a937c2cfeb1e09bed7bf5ba2b11f4",
-      "before": [
-        "p444e7817fd9967c853ce91f8f4a1af92"
-      ],
+      "focused": "p444e7817fd9967c853ce91f8f4a1af92",
+      "before": [],
       "zoomed": null,
       "settled": null
     }
@@ -44,7 +63,7 @@
     },
     "t1": {
       "word": "done",
-      "seen": true
+      "seen": false
     },
     "t2": {
       "word": null,
@@ -55,6 +74,22 @@
       "seen": true
     },
     "t4": {
+      "word": null,
+      "seen": true
+    },
+    "t5": {
+      "word": null,
+      "seen": true
+    },
+    "t6": {
+      "word": null,
+      "seen": true
+    },
+    "t7": {
+      "word": "done",
+      "seen": true
+    },
+    "t8": {
       "word": null,
       "seen": true
     }

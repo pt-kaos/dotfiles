@@ -36,3 +36,6 @@
 2026-11-12T00:47:31.208968Z  WARN herdr::client: endpoint transport failed endpoint=ssh:7836f28c3146bd47d30be442b7958ed7 error=connection was lost
 2026-11-12T00:47:31.950272Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
 2026-11-12T00:47:32.203184Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.5
+2026-11-12T03:30:23.697123Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=2309488
+2026-11-12T03:34:09.077820Z  WARN herdr::client: endpoint transport failed endpoint=local error=server is shutting down
+2026-11-12T03:34:09.146339Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=2335948

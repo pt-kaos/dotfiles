@@ -47,3 +47,33 @@
 2026-11-12T00:33:43.159934Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
 2026-11-12T01:12:13.762680Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
 2026-11-12T01:42:13.763267Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-12T02:12:13.764731Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-12T02:42:13.765670Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-12T03:12:13.765760Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-11-12T03:28:53.431950Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-11-12T03:28:53.431977Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-11-12T03:28:56.508649Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 0, signal: None }"
+2026-11-12T03:28:56.510641Z  INFO herdr::pane: pane session terminated pane=1 pid=1868061 signal=Hangup
+2026-11-12T03:28:56.511022Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=56 cols=184 scrollback_limit_bytes=10000000
+2026-11-12T03:28:56.511931Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=2602404
+2026-11-12T03:28:56.512093Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w2" pane_id=2
+2026-11-12T03:28:56.512100Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-11-12T03:28:56.512104Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-11-12T03:28:58.140829Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 0, signal: None }"
+2026-11-12T03:28:58.140976Z  INFO herdr::pane: pane session terminated pane=2 pid=2602404 signal=Hangup
+2026-11-12T03:28:58.141225Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=56 cols=184 scrollback_limit_bytes=10000000
+2026-11-12T03:28:58.142244Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=2602596
+2026-11-12T03:28:58.142385Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w3" pane_id=3
+2026-11-12T03:28:58.142394Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w3"
+2026-11-12T03:28:58.142399Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w3" tab_id="w3:t1"
+2026-11-12T03:29:03.170312Z  INFO herdr::persist::writer: preserved session recovery copy event="persist.backup" subsystem="persist" outcome="ok" path=/home/pedro/.config/herdr/session.json backup_path=/home/pedro/.config/herdr/session-snapshots/session-000000000000000000001794454143165498963-1868045-0.json
+2026-11-12T03:29:03.170340Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/pedro/.config/herdr/session.json workspaces=1
+2026-11-12T03:30:23.695977Z  INFO herdr::server::headless: client detached client_id=6
+2026-11-12T03:34:08.996865Z  INFO herdr::platform::linux::shutdown: host shutdown requested; preserving session before pane termination
+2026-11-12T03:34:08.997323Z  INFO herdr::server::headless::lifecycle: server shutdown initiated reason=host shutdown
+2026-11-12T03:34:09.047428Z  INFO herdr::server::headless::lifecycle: completing server shutdown
+2026-11-12T03:34:09.107870Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/pedro/.config/herdr/session.json workspaces=1
+2026-11-12T03:34:09.107899Z  INFO herdr::server::headless: headless server exiting
+2026-11-12T03:34:09.109314Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=3 status="ExitStatus { code: 1, signal: Some(\"Hangup\") }"
+2026-11-12T03:34:09.111201Z  INFO herdr::pane: pane session terminated pane=3 pid=2602596 signal=Hangup
+2026-11-12T03:34:09.111956Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="server" outcome="completed" pid=1868045

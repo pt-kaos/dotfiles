@@ -27,6 +27,8 @@ hl.on('hyprland.start', function()
     hl.exec_cmd 'hyprlauncher -d'
     --hl.exec_cmd 'qs'
     hl.exec_cmd 'waybar 2>&1 | logger -t waybar'
+    -- battery popup: Waybar battery on-click toggles it (quickshell ipc call battery toggle).
+    hl.exec_cmd 'quickshell -p ~/.config/quickshell/battery-popup'
     -- kaos-launcher: resident Quickshell instance, hidden until F11 toggles it.
     -- The wrapper starts it with `quickshell -n` (single instance).
     hl.exec_cmd 'sleep 2 && KAOS_START_HIDDEN=1 /home/pedro/Documents/_MyAgenticOS/Projects/kaos-launcher/app/kaos-launcher'

@@ -63,8 +63,8 @@
     "ctrl-j": "pane.go:down",
     "ctrl-k": "pane.go:up",
     "ctrl-l": "pane.go:right",
-    "ctrl-< g": "mod.open:changes-toggle",
-    "ctrl-< w": "mod.open:picker",
+    "ctrl-s g": "mod.open:changes-toggle",
+    "ctrl-s f": "mod.open:files-toggle"
   },
   "terminal": {
     "ctrl-backspace": "send:\u0017",

@@ -127,6 +127,7 @@
     },
     "battery": {
         "interval": 2,
+        "on-click": "quickshell -p ~/.config/quickshell/battery-popup ipc call battery toggle",
         "states": {
             //"good": 95,
             "warning": 30,
